@@ -274,7 +274,7 @@ final_info() {
     task_start "Sonarr:     http://${hostip}:8989" && is_active sonarr
     task_start "Lidarr:     http://${hostip}:8686" && is_active lidarr
     task_start "Radarr:     http://${hostip}:7878" && is_active radarr
-    term_message c "\nThe web services may need a short period of time to start after setup."
+    term_message c "\nThe web services may need a short period of time to start after setup.\n"
 }
 
 # Function to assist in removing the applications and their configuration files
