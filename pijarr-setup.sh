@@ -210,7 +210,7 @@ setup_app() {
             term_message rb "${app} is not a valid application which can be installed.\n"
             exit
         fi
-        task_start "Creating temporary working directory for sources ${temp_dir}"
+        task_start "Creating temporary directory for sources ${temp_dir}"
         mkdir -p "${temp_dir}" &>/dev/null || true
         task_done
         term_message cb "\nCommencing install for ${app_name}"
