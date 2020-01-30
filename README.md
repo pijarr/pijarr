@@ -1,3 +1,5 @@
+![PiJARR Terminal Screenshot](/terminal.png)
+
 ## pijarr-setup.sh
 Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr on Raspberry Pi Raspbian OS
 
