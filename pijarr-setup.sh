@@ -210,7 +210,7 @@ setup_app() {
             term_message rb "${app} is not a valid application which can be installed.\n"
             exit
         fi
-        task_start "Make temp working directory for sources ${temp_dir}"
+        task_start "Creating temporary working directory for sources ${temp_dir}"
         mkdir -p "${temp_dir}" &>/dev/null || true
         task_done
         term_message cb "\nCommencing install for ${app_name}"
@@ -268,13 +268,13 @@ EOF
 }
 
 final_info() {
+    term_message gb "\nSetup script has completed.\n"
     local hostip=$(hostname -I | awk '{print $1}')
     task_start "Jackett:    http://${hostip}:9117" && is_active jackett
     task_start "Sonarr:     http://${hostip}:8989" && is_active sonarr
     task_start "Lidarr:     http://${hostip}:8686" && is_active lidarr
     task_start "Radarr:     http://${hostip}:7878" && is_active radarr
     term_message c "\nThe web services may need a short period of time to start after setup."
-    term_message gb "\nSetup script has completed.\n"
 }
 
 # Function to assist in removing the applications and their configuration files
