@@ -1,9 +1,9 @@
-# pijarr-setup.sh
+## pijarr-setup.sh
 Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr on Raspberry Pi Raspbian OS
 
 [ Tested January 2020 Raspberry Pi 3 & 4 Raspbian Buster ]
 
-# Usage
+## Usage
 **Method 1:** Clone and run locally. You can edit and modify script to suit using this method.
 
 `git clone https://github.com/piscripts/pijarr.git`
@@ -16,6 +16,7 @@ Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr o
 
 `sudo bash -c "$(wget -O- https://raw.githubusercontent.com/piscripts/pijarr/master/pijarr-setup.sh)"`
 
+## Troubleshooting
 Version of packages used are at the top of the script with the exception of Sonarr which will get the latest version for Linux.The initial required foundation packages such and Mono (Cross platform, open source .NET framework) may take a while to download and install. When you see installing mono-devel, be patient.
 
 Otherwise try installing dependencies manually using the commands below and then re-run the script:
