@@ -190,7 +190,7 @@ setup_dependencies() {
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >/dev/null 2>&1
     echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | tee /etc/apt/sources.list.d/mono-official-stable.list >/dev/null 2>&1
     pkg_update
-    term_message c "Installing mono, sqlites and supporting libraries..."
+    term_message c "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-devel mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
 }
 
