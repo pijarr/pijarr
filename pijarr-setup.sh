@@ -91,7 +91,7 @@ task_done() {
 
 # Displays a box containing a red cross and optional message if required.
 task_fail() {
-    echo -e "\r[\033[0;31m\u2717\033[0m] ${1}"
+    echo -e "\r[\033[0;31m\xe2\x9c\x98\033[0m] ${1}"
 }
 
 # Function to pause script and check if the user wishes to continue.
