@@ -8,8 +8,8 @@ set -o pipefail
 readonly VALID_APPS=(jackett lidarr radarr sonarr)
 
 # Application sources towards top to make them easier to update
-jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.12.1638/Jackett.Binaries.LinuxARM32.tar.gz'
-radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v0.2.0.1450/Radarr.develop.0.2.0.1450.linux.tar.gz'
+jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.16.1684/Jackett.Binaries.LinuxARM32.tar.gz'
+radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v0.2.0.1504/Radarr.develop.0.2.0.1504.linux.tar.gz'
 lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.7.1.1381/Lidarr.master.0.7.1.1381.linux.tar.gz'
 sonarr_src_url='https://services.sonarr.tv/v1/download/phantom-develop/latest?version=3&os=linux'
 
