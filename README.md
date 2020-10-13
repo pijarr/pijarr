@@ -5,8 +5,7 @@ Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr o
 
 [ Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)]
 
-- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster  
-- Release: August 2020 (Kernel 5.4)  
+- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - August 2020 (Kernel 5.4)    
 
 
 ## Usage
