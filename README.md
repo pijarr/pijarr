@@ -3,7 +3,11 @@
 ## pijarr-setup.sh
 Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr on Raspberry Pi Raspbian OS
 
-[ Tested January 2020 Raspberry Pi 3 & 4 Raspbian Buster ]
+[ Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)]
+
+- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster  
+- Release: August 2020 (Kernel 5.4)  
+
 
 ## Usage
 **Method 1:** Clone and run locally. You can edit and modify script to suit using this method.
@@ -23,15 +27,15 @@ Version of packages used are at the top of the script with the exception of Sona
 
 Otherwise try installing dependencies manually using the commands below and then re-run the script:
 
-1. `sudo apt-get -y install apt-transport-https dirmngr gnupg ca-certificates`
+1. `sudo apt -y install apt-transport-https dirmngr gnupg ca-certificates`
 
 2. `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF`
 
 3. `echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list`
 
-4. `sudo apt-get -y update`
+4. `sudo apt -y update`
 
-5. `sudo apt-get -y install mono-devel mediainfo sqlite3 libmono-cil-dev libchromaprint-tools`
+5. `sudo apt -y install mono-devel mediainfo sqlite3 libmono-cil-dev libchromaprint-tools`
 
 With minor modification the script would likely work for other Debian or Ubuntu linux systems. To do this some sources may need to be changed as the the LinuxARM32 version is currently used for Jackett.
 
