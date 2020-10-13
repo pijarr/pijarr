@@ -27,7 +27,7 @@ Name:           pijarr-setup.sh
 Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, and Lidarr
 Author:         github.com/piscripts
 Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
-Modified:       2020-10-13
+Modified:       2020-10-14
 Usage:          sudo bash pijarr-setup.sh
 Notes:          Requiries sudo/root superuser permissions to run.
 
@@ -120,12 +120,20 @@ check_superuser() {
     fi
 }
 
-# Function to run apt-get update without output
 pkg_update() {
-    task_start "Updating packages..."
-    (apt-get -y update >/dev/null 2>&1) &
-    spinner $!
-    task_done
+    term_message cb "Updating packages using apt update..."
+    apt update -y
+}
+
+pkg_upgrade() {
+    term_message cb "Upgrading packages using apt upgrade..."
+    apt upgrade -y
+}
+
+pkg_cleanup() {
+    term_message cb "Running package clean-up using apt autoclean and autoremove..."
+    apt autoclean -y
+    apt autoremove -y
 }
 
 # Function to check if packages are installed and install them if they are not found.
@@ -136,34 +144,15 @@ pkg_install() {
             task_done
         else
             task_fail "Package ${pkg} not found.$(tput el)"
-            task_start "Attempting to install ${pkg}..."
-            (apt-get -y install "${pkg}" &>/dev/null || true) &
-            spinner $!
+            term_message c "Attempting to install ${pkg} package with apt..."
+            apt install -y "${pkg}"
             if [[ $(dpkg -s "${pkg}") == *"Status: install ok installed"* ]] &>/dev/null; then
-                task_done
+                term_message g "Package ${pkg} is now installed."
             else
-                task_fail "Unable to install package ${pkg}.$(tput el)"
+                term_message rb "Unable to install package ${pkg}"
             fi
         fi
     done
-}
-
-# Function to display animated spinner to show longer tasks are still running.
-spinner() {
-    # Credit http://fitnr.com/showing-a-bash-spinner.html
-    local pid=$1
-    local delay=0.75
-    local spinstr='|/-\'
-    while ps a | awk '{print $1}' | grep -q "${pid}"; do
-        tput civis
-        local temp=${spinstr#?}
-        printf " [%c]  " "${spinstr}"
-        local spinstr=${temp}${spinstr%"$temp"}
-        sleep ${delay}
-        printf "\b\b\b\b\b\b"
-    done
-    printf "    \b\b\b\b"
-    tput cnorm
 }
 
 # Function to check if a service is active will return green tick or red cross.
@@ -189,6 +178,7 @@ setup_dependencies() {
     pkg_install apt-transport-https dirmngr gnupg ca-certificates
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >/dev/null 2>&1
     echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | tee /etc/apt/sources.list.d/mono-official-stable.list >/dev/null 2>&1
+    term_message c "Updating packages to include newly added sources..."
     pkg_update
     term_message c "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-devel mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
@@ -220,9 +210,8 @@ setup_app() {
         term_message c "Fetching ${app_name} source file..."
         wget -O "${temp_dir}"/"${new_file}" -q --show-progress --progress=bar:force "${src_url}" 2>&1 &&
             task_done "Source file downloaded.$(tput el)"
-        task_start "Extracting ${new_file} to /opt/..."
-        (tar -xf "${temp_dir}"/"${new_file}" -C /opt/) &
-        spinner $! && task_done
+        term_message c "Extracting ${new_file} to /opt/..."
+        tar -xf "${temp_dir}"/"${new_file}" -C /opt/
         task_start "Set user permissions on /opt/Jackett"
         chown -R "${app_user}":"${app_group}" /opt/"${app_name^}"/ && task_done
         # Just in case some apps have permission problems with their /var/lib config working directories.
@@ -306,6 +295,9 @@ main() {
     script_info
     check_superuser
     check_continue
+    pkg_update
+    pkg_upgrade
+    pkg_cleanup
     #remove_app jackett sonarr lidarr radarr
     setup_dependencies
     setup_app jackett sonarr lidarr radarr
