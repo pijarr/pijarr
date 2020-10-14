@@ -3,8 +3,7 @@
 ## pijarr-setup.sh
 Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr on Raspberry Pi Raspbian OS
 
-[ Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)]
-
+**Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)**  
 - Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - August 2020 (Kernel 5.4)    
 
 
@@ -15,7 +14,7 @@ Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr o
 
 `sudo bash pijarr/pijarr-setup.sh`
 
-**Method 2:** Just use the curl or wget command lines shown below for a one-step install.
+**Method 2 (Quick easy setup):** Just use the curl or wget command lines shown below for a one-step install.
 
 `sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/piscripts/pijarr/master/pijarr-setup.sh)"`
 
