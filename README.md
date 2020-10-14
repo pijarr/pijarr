@@ -1,7 +1,7 @@
 ![PiJARR Terminal Screenshot](/terminal.png)
 
 ## pijarr-setup.sh
-Simple automated setup and configuration of Jackett, Sonarr, Lidarr and Radarr on Raspberry Pi Raspbian OS
+Bash shell script for Raspberry Pi to automate the setup and configuration of Jackett, Sonarr, Radarr, and Lidarr
 
 **Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)**  
 - Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - August 2020 (Kernel 5.4)    
