@@ -8,9 +8,9 @@ set -o pipefail
 readonly VALID_APPS=(jackett lidarr radarr sonarr)
 
 # Application sources towards top to make them easier to update
-jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.16.1684/Jackett.Binaries.LinuxARM32.tar.gz'
-radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v0.2.0.1504/Radarr.develop.0.2.0.1504.linux.tar.gz'
-lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.7.1.1381/Lidarr.master.0.7.1.1381.linux.tar.gz'
+jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.17.484/Jackett.Binaries.LinuxARM32.tar.gz'
+radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v3.0.2.4552/Radarr.master.3.0.2.4552.linux.tar.gz'
+lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.7.2.1878/Lidarr.master.0.7.2.1878.linux.tar.gz'
 sonarr_src_url='https://services.sonarr.tv/v1/download/phantom-develop/latest?version=3&os=linux'
 
 # Function to output PiJARR ascii and details of script.
@@ -27,7 +27,6 @@ Name:           pijarr-setup.sh
 Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, and Lidarr
 Author:         github.com/piscripts
 Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
-Modified:       2020-10-14
 Usage:          sudo bash pijarr-setup.sh
 Notes:          Requiries sudo/root superuser permissions to run.
 
