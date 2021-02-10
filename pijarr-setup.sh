@@ -211,7 +211,7 @@ setup_app() {
             task_done "Source file downloaded.$(tput el)"
         term_message c "Extracting ${new_file} to /opt/..."
         tar -xf "${temp_dir}"/"${new_file}" -C /opt/
-        task_start "Set user permissions on /opt/Jackett"
+        task_start "Set user permissions on /opt/${app_name^}"
         chown -R "${app_user}":"${app_group}" /opt/"${app_name^}"/ && task_done
         # Just in case some apps have permission problems with their /var/lib config working directories.
         task_start "Creating other /var/lib config directories and setting permissions"
