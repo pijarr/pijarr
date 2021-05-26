@@ -8,15 +8,15 @@ set -o pipefail
 readonly VALID_APPS=(jackett lidarr radarr sonarr)
 
 # Application sources towards top to make them easier to update
-jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.17.484/Jackett.Binaries.LinuxARM32.tar.gz'
-radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v3.0.2.4552/Radarr.master.3.0.2.4552.linux.tar.gz'
-lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.7.2.1878/Lidarr.master.0.7.2.1878.linux.tar.gz'
+jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.18.155/Jackett.Binaries.LinuxARM32.tar.gz'
+radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v3.2.0.5048/Radarr.master.3.2.0.5048.linux.tar.gz'
+lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.8.1.2135/Lidarr.master.0.8.1.2135.linux.tar.gz'
 sonarr_src_url='https://services.sonarr.tv/v1/download/phantom-develop/latest?version=3&os=linux'
 
 # Function to output PiJARR ascii and details of script.
 script_info() {
     cat <<EOF
-                                                                      
+
 ${RED}▓▓▓▓▓▓▓▓▓▓▓▓▓ ${GREEN}▓▓▓▓${RESET}          ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
 ${RED}▓▓▓▓     ▓▓▓▓     ${RESET}          ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓
 ${RED}▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓${RESET} ▓▓▓▓     ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
