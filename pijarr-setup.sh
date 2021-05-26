@@ -9,7 +9,7 @@ readonly VALID_APPS=(jackett lidarr radarr sonarr)
 
 # Application sources towards top to make them easier to update
 jackett_src_url='https://github.com/Jackett/Jackett/releases/download/v0.18.155/Jackett.Binaries.LinuxARM32.tar.gz'
-radarr_src_url='https://github.com/Radarr/Radarr/releases/download/v3.2.0.5048/Radarr.master.3.2.0.5048.linux.tar.gz'
+radarr_src_url='https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'
 lidarr_src_url='https://github.com/lidarr/Lidarr/releases/download/v0.8.1.2135/Lidarr.master.0.8.1.2135.linux.tar.gz'
 sonarr_src_url='https://services.sonarr.tv/v1/download/phantom-develop/latest?version=3&os=linux'
 
