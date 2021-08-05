@@ -1,10 +1,9 @@
-## PiJARR
-Bash shell script for Raspberry Pi to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr).
+![PiJARR](/pijarr.jpg)
+
+A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr) on a **Raspberry Pi**.
 
 **Tested August 2021 Raspberry Pi 3 & 4**  
-*Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - May 7th 2021 (Kernel 5.10)*
-
-![PiJARR Terminal Screenshot](/terminal.png)
+*Running Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - May 7th 2021 (Kernel 5.10)*
 
 ## Usage
 **Method 1:** Clone and run locally. You can edit and modify script to suit using this method.
