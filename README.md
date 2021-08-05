@@ -3,9 +3,8 @@
 ## pijarr-setup.sh
 Bash shell script for Raspberry Pi to automate the setup and configuration of Jackett, Sonarr, Radarr, and Lidarr
 
-**Tested October 2020 Raspberry Pi 3 & 4 Raspberry Pi OS (previously called Raspbian)**  
-- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - August 2020 (Kernel 5.4)    
-
+**Tested August 2021 Raspberry Pi 3 & 4 Raspberry Pi OS**  
+- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - May 7th 2021 (Kernel 5.10)
 
 ## Usage
 **Method 1:** Clone and run locally. You can edit and modify script to suit using this method.
@@ -35,6 +34,5 @@ Otherwise try installing dependencies manually using the commands below and then
 
 5. `sudo apt -y install mono-devel mediainfo sqlite3 libmono-cil-dev libchromaprint-tools`
 
-With minor modification the script would likely work for other Debian or Ubuntu linux systems. To do this some sources may need to be changed as the the LinuxARM32 version is currently used for Jackett.
 
 
