@@ -1,4 +1,4 @@
-## pijarr-setup.sh
+## PiJARR
 Bash shell script for Raspberry Pi to automate the setup and configuration of Jackett, Sonarr, Radarr, and Lidarr
 
 **Tested August 2021 Raspberry Pi 3 & 4 Raspberry Pi OS**  
