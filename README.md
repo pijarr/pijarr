@@ -1,4 +1,4 @@
-![PiJARR](/pijarr.jpg)
+![PiJARR](/pijarr.png)
 
 A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr) on a **Raspberry Pi**.
 
