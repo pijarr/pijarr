@@ -1,8 +1,8 @@
 ## PiJARR
-Bash shell script for Raspberry Pi to automate the setup and configuration of Jackett, Sonarr, Radarr, and Lidarr
+Bash shell script for Raspberry Pi to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr).
 
-**Tested August 2021 Raspberry Pi 3 & 4 Raspberry Pi OS**  
-- Raspberry Pi OS (32-bit) Lite minimal image based on Debian Buster - May 7th 2021 (Kernel 5.10)
+**Tested August 2021 Raspberry Pi 3 & 4**  
+*Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - May 7th 2021 (Kernel 5.10)*
 
 ![PiJARR Terminal Screenshot](/terminal.png)
 
@@ -19,9 +19,17 @@ Bash shell script for Raspberry Pi to automate the setup and configuration of Ja
 
 `sudo bash -c "$(wget -O- https://raw.githubusercontent.com/piscripts/pijarr/master/pijarr-setup.sh)"`
 
-## Troubleshooting
-Version of packages used are at the top of the script with the exception of Sonarr which will get the latest version for Linux.The initial required foundation packages such and Mono (Cross platform, open source .NET framework) may take a while to download and install. When you see installing mono-devel, be patient.
+## Default web ports
+Once all applications are installed and the services are started they can be accessed at the following port numbers:
+|SERVICE |ADDRESS & PORT|
+| --- | --- |
+|Jackett: |http://`<ipaddress>`:9117|
+|Sonarr: |http://`<ipaddress>`:8989|
+|Lidarr: |http://`<ipaddress>`:8686|
+|Radarr: |http://`<ipaddress>`:7878|
 
+## Troubleshooting
+The required dependencies including [Mono](https://github.com/mono/mono) (Cross platform, open source .NET framework) may take a while to download and install. Be patient.
 Otherwise try installing dependencies manually using the commands below and then re-run the script:
 
 1. `sudo apt -y install apt-transport-https dirmngr gnupg ca-certificates`
