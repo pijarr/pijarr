@@ -20,12 +20,12 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 
 ## Default web ports
 Once all applications are installed and the services are started they can be accessed at the following port numbers:
-|SERVICE |ADDRESS & PORT|
-| --- | --- |
-|Jackett: |http://`<ipaddress>`:9117|
-|Sonarr: |http://`<ipaddress>`:8989|
-|Lidarr: |http://`<ipaddress>`:8686|
-|Radarr: |http://`<ipaddress>`:7878|
+```
+Jackett   http://<ipaddress>:9117
+Sonarr    http://<ipaddress>:8989
+Lidarr    http://<ipaddress>:8686
+Radarr    http://<ipaddress>:7878
+```
 
 ## Troubleshooting
 The required dependencies including [Mono](https://github.com/mono/mono) (Cross platform, open source .NET framework) may take a while to download and install. Be patient.
