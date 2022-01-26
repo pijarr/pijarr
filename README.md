@@ -1,8 +1,8 @@
 ![PiJARR](/pijarr.png)
 
-![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr)
-![GitHub Repo forks](https://img.shields.io/github/forks/pijarr/pijarr)
-![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)
+[![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr)](https://github.com/pijarr/pijarr)
+[![GitHub Repo forks](https://img.shields.io/github/forks/pijarr/pijarr)](https://github.com/pijarr/pijarr)
+[![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 
 A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr) on a **Raspberry Pi**.
 
