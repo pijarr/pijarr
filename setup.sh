@@ -28,9 +28,8 @@ ${RED}▓▓▓▓          ▓▓▓▓${RESET} ▓▓▓▓▓▓▓▓▓▓�
 
 Name:           pijarr-setup.sh
 Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, and Lidarr
-Author:         github.com/piscripts
+Author:         github.com/pijarr
 Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
-Usage:          sudo bash pijarr-setup.sh
 
 Notes:          Requiries sudo/root superuser permissions to run.
 
