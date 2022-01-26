@@ -33,6 +33,10 @@ Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
 Usage:          sudo bash pijarr-setup.sh
 
 Notes:          Requiries sudo/root superuser permissions to run.
+
+                If they are not already installed the required dependencies including 
+                Mono (Cross platform, open source .NET framework) may take a while to 
+                download and install. 
                 
                 After initial setup the web interface for the application may need a some time 
                 to start before being available on the nominated host port.
