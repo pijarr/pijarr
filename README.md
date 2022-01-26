@@ -2,11 +2,35 @@
 
 A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr) on a **Raspberry Pi**.
 
-**UPDATE for 2022**  
-As requested / raised in issues - added menu system to allow installation and removal of individual applications.  
-
 **Tested Raspberry Pi 3 & 4**  
 *Running Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
+
+**UPDATE for 2022**  
+As requested / raised in issues - added menu system to allow installation and removal of individual applications. The removal of applications is only going to work if the PiJARR script was used for the original installation. 
+
+```
+=====================
+ PiJARR Menu Options 
+=====================
+
+1.  Install ALL applications jackett sonarr lidarr and radarr
+2.  Install jackett only
+3.  Install sonarr only
+4.  Install lidarr only
+5.  Install radarr only
+
+6.  Remove ALL applications jackett sonarr lidarr and radarr
+7.  Remove jackett only
+8.  Remove sonarr only
+9.  Remove lidarr only
+10. Remove radarr only
+
+11. Check application service status
+
+12. Exit
+
+   Enter option [1-12]: 
+```
 
 ## Usage
 **Method 1 (Quick easy setup):** Just use the curl or wget command lines shown below for quick setup.
