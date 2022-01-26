@@ -31,7 +31,11 @@ Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, and Lidarr
 Author:         github.com/piscripts
 Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
 Usage:          sudo bash pijarr-setup.sh
+
 Notes:          Requiries sudo/root superuser permissions to run.
+                
+                After initial setup the web interface for the application may need a some time 
+                to start before being available on the nominated host port.
 
 EOF
 }
@@ -260,14 +264,13 @@ EOF
     done
 }
 
-final_info() {
-    term_message gb "\nSetup script has completed.\n"
+check_status() {
+    term_message cb "\nChecking service status..."
     local hostip=$(hostname -I | awk '{print $1}')
     task_start "Jackett:    http://${hostip}:9117" && is_active jackett
     task_start "Sonarr:     http://${hostip}:8989" && is_active sonarr
     task_start "Lidarr:     http://${hostip}:8686" && is_active lidarr
     task_start "Radarr:     http://${hostip}:7878" && is_active radarr
-    term_message c "\nThe web services may need a short period of time to start after setup.\n"
 }
 
 # Function to assist in removing the applications and their configuration files
@@ -292,6 +295,96 @@ remove_app() {
     done
 }
 
+# Pause and wait for any key to be pressed
+any_key() {
+    echo ""
+    read -n 1 -s -r -p "Press any key to continue."
+}
+
+# Display a list of menu items for selection
+display_menu () {
+    echo "====================="                         
+    echo " PiJARR Menu Options "
+    echo "====================="
+    echo
+    echo -e "1.  Install ALL applications jackett sonarr lidarr and radarr"
+    echo -e "2.  Install jackett only"
+    echo -e "3.  Install sonarr only"
+    echo -e "4.  Install lidarr only"
+    echo -e "5.  Install radarr only"
+    echo -e "\n6.  Remove ALL applications jackett sonarr lidarr and radarr"
+    echo -e "7.  Remove jackett only"
+    echo -e "8.  Remove sonarr only"
+    echo -e "9.  Remove lidarr only"
+    echo -e "10. Remove radarr only"
+    echo -e "\n11. Check application service status"
+    echo -e "\n12. Exit"
+    echo
+    echo -n "   Enter option [1-12]: "
+
+    while :
+    do
+    read choice
+    case ${choice} in
+    1)  echo -e "\nInstalling ALL applications jackett sonarr lidarr and radarr..."
+        setup_app jackett sonarr lidarr radarr
+        remove_temp
+        check_status
+        ;;
+    2)  echo -e "\nInstalling jackett..."
+        setup_app jackett
+        remove_temp
+        check_status
+        ;;
+    3)  echo -e "\nInstalling sonarr..."
+        setup_app sonarr
+        remove_temp
+        check_status
+        ;;
+    4)  echo -e "\nInstalling lidarr..."
+        setup_app lidarr
+        remove_temp
+        check_status
+        ;;
+    5)  echo -e "\nInstalling radarr..."
+        setup_app radarr
+        remove_temp
+        check_status
+        ;;
+    6)  echo -e "\nRemoving ALL applications jackett sonarr lidarr and radarr..."
+        remove_app jackett sonarr lidarr radarr
+        check_status
+        ;;
+    7)  echo -e "\nRemoving jackett..."
+        remove_app jackett
+        check_status
+        ;;
+    8)  echo -e "\nRemoving sonarr..."
+        remove_app sonarr
+        check_status
+        ;;
+    9)  echo -e "\nRemoving lidarr..."
+        remove_app lidarr
+        check_status
+        ;;
+    10) echo -e "\nRemoving radarr..."
+        remove_app radarr
+        check_status
+        ;;
+    11) check_status
+        ;;
+    12) echo -e "Exiting...\n"
+        exit;;
+    *)  clear
+        display_menu;;
+    esac
+    echo -e "\nSelection [${choice}] completed."
+    any_key
+    clear
+    display_menu
+    done
+}
+
 # One function to rule them all.
 main() {
     clear
@@ -303,10 +396,8 @@ main() {
     pkg_upgrade
     pkg_cleanup
     setup_dependencies
-    #remove_app jackett sonarr lidarr radarr
-    setup_app jackett sonarr lidarr radarr
-    remove_temp
-    final_info
+    clear
+    display_menu
 }
 
 main "${@}"
