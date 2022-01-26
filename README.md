@@ -10,7 +10,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 *Running Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
 
 **UPDATE for 2022**  
-As requested / raised in issues - added menu system to allow installation and removal of individual applications. *The removal of applications is only going to work if the PiJARR script was used for the original installation.* 
+As requested / raised in issues - added menu system to allow installation and removal of individual applications.  
 
 ```
 =====================
@@ -35,6 +35,10 @@ As requested / raised in issues - added menu system to allow installation and re
 
    Enter option [1-12]: 
 ```
+ 
+- *The removal of applications is only going to work if the PiJARR script was used for the original installation.*  
+- ***When removing applications anything contained in the /var/lib/{appname} or /opt/{appname} will be deleted.***
+
 
 ## Usage
 **Method 1 (Quick easy setup):** Just use the curl or wget command lines shown below for quick setup.
