@@ -9,17 +9,17 @@ As requested / raised in issues - added menu system to allow installation and re
 *Running Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
 
 ## Usage
-**Method 1:** Clone and run locally. You can edit and modify script to suit using this method.
+**Method 1 (Quick easy setup):** Just use the curl or wget command lines shown below for quick setup.
 
-`git clone https://github.com/piscripts/pijarr.git`
+`sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"`
 
-`sudo bash pijarr/pijarr-setup.sh`
+`sudo bash -c "$(wget -O- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"`
 
-**Method 2 (Quick easy setup):** Just use the curl or wget command lines shown below for a one-step install.
+**Method 2:** Clone and run locally. You can edit and modify script to suit using this method.
 
-`sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/piscripts/pijarr/master/pijarr-setup.sh)"`
+`git clone https://github.com/pijarr/pijarr.git`
 
-`sudo bash -c "$(wget -O- https://raw.githubusercontent.com/piscripts/pijarr/master/pijarr-setup.sh)"`
+`sudo bash pijarr/setup.sh`
 
 ## Default web ports
 Once all applications are installed and the services are started they can be accessed at the following port numbers:
