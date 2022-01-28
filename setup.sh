@@ -380,7 +380,7 @@ display_menu () {
         ;;
     11) check_status
         ;;
-    12) echo -e "Exiting...\n"
+    12) echo -e "\nExiting...\n"
         exit;;
     *)  clear
         display_menu;;
