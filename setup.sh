@@ -37,7 +37,7 @@ Notes:          Requiries sudo/root superuser permissions to run.
                 Mono (Cross platform, open source .NET framework) may take a while to 
                 download and install. 
                 
-                After initial setup the web interface for the application may need a some time 
+                After initial setup the web interface for the application may need a short time 
                 to start before being available on the nominated host port.
 
 EOF
@@ -71,7 +71,6 @@ term_colors() {
 
 # Function to output colored or bold terminal messages.
 # Usage examples: term_message "This is a default color and style message"
-#                 term_message nb "This is a default color bold message"
 #                 term_message rb "This is a red bold message"
 term_message() {
     local set_color=""
