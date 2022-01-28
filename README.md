@@ -62,8 +62,5 @@ Lidarr    http://<ipaddress>:8686
 Radarr    http://<ipaddress>:7878
 ```
 
-## Troubleshooting
-The required dependencies including [Mono](https://github.com/mono/mono) (Cross platform, open source .NET framework) may take a while to download and install. Be patient.
-
 
 
