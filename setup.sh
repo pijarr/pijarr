@@ -6,6 +6,7 @@ set -o pipefail
 # Set valid applications which can be used with this script
 # Tested applications are jackett lidarr radarr sonarr
 readonly VALID_APPS=(jackett lidarr radarr sonarr)
+readonly OS_CODENAME=$(cat /etc/os-release | grep -oP "VERSION_CODENAME=\K\w+")
 
 # Fetch latest jackett ARM32 release from https://github.com/Jackett/Jackett/releases
 jackett_releases=`curl -s https://github.com/Jackett/Jackett/releases | awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' | grep ARM32.tar.gz -A 0`
@@ -187,8 +188,7 @@ setup_dependencies() {
     term_message c "Adding repository key and apt source for mono..."
 	gpg --no-default-keyring --keyring /usr/share/keyrings/mono-archive-keyring.gpg \
 	--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >/dev/null 2>&1
-	echo "deb [signed-by=/usr/share/keyrings/mono-archive-keyring.gpg] \
-	https://download.mono-project.com/repo/debian stable-raspbianbuster main" | \
+	echo "deb [signed-by=/usr/share/keyrings/mono-archive-keyring.gpg] https://download.mono-project.com/repo/debian stable-raspbian${OS_CODENAME,,} main" | \
 	tee /etc/apt/sources.list.d/mono-official-stable.list >/dev/null 2>&1
     term_message c "Updating packages to include newly added source..."
     pkg_update
