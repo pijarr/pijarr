@@ -186,7 +186,7 @@ setup_dependencies() {
     term_message c "Installing required dependencies..."
     pkg_install apt-transport-https dirmngr gnupg ca-certificates
     term_message c "Adding repository key and apt source for mono..."
-    mkdir /root/.gnupg
+    mkdir -p /root/.gnupg
     chmod -R 600 /root/.gnupg
     gpg --no-default-keyring --keyring /usr/share/keyrings/mono-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 \
     --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >/dev/null 2>&1
