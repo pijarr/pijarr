@@ -34,7 +34,8 @@ As requested / raised in issues - added menu system to allow installation and re
 
    Enter option [1-12]: 
 ```
- 
+
+- During setup dependencies mono install may taken some time and slow around 88-90%. It will eventually complete.    
 - *The removal of applications is only going to work if the PiJARR script was used for the original installation.*  
 - ***When removing applications anything contained in the /var/lib/{appname} or /opt/{appname} will be deleted.***
 
