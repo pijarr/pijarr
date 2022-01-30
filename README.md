@@ -1,12 +1,15 @@
 ![PiJARR](/pijarr.png)
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr?style=social)](https://github.com/pijarr/pijarr/stargazers)
-[![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr?style=social)](https://github.com/pijarr/pijarr/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr)](https://github.com/pijarr/pijarr/stargazers)
+[![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
+[![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
 A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), and [Lidarr](https://github.com/Lidarr/Lidarr) on a **Raspberry Pi**.
 
 **Tested Raspberry Pi 3 & 4**  
 *Running Raspberry Pi OS ([32-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
+
+Not extensively tested though apps appear to work with Raspberry Pi OS Bullseye (Release date: January 28th 2022). Currently no mono package release for bullseye however buster mono package appears to still work.  
 
 **UPDATE for 2022**  
 As requested / raised in issues - added menu system to allow installation and removal of individual applications.  
