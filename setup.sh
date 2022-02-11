@@ -194,7 +194,7 @@ setup_dependencies() {
     #tee /etc/apt/sources.list.d/mono-official-stable.list >/dev/null 2>&1
     #term_message c "Updating packages to include newly added source..."
     #pkg_update
-    #term_message c "Installing mono, sqlite3 and supporting libraries..."
+    term_message c "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-complete mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
 }
 
