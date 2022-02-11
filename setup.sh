@@ -8,8 +8,14 @@ set -o pipefail
 readonly VALID_APPS=(jackett lidarr radarr sonarr)
 readonly OS_CODENAME=$(cat /etc/os-release | grep -oP "VERSION_CODENAME=\K\w+")
 
+if [[ $(uname -m | grep 'armv7l') ]]; then
+    readonly OS_ARCH="ARM32"
+elif [[ $(uname -m | grep 'aarch64') ]]; then
+    readonly OS_ARCH="ARM64"
+fi
+
 # Fetch latest jackett ARM32 release from https://github.com/Jackett/Jackett/releases
-jackett_releases=`curl -s https://github.com/Jackett/Jackett/releases | awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' | grep ARM32.tar.gz -A 0`
+jackett_releases=`curl -s https://github.com/Jackett/Jackett/releases | awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' | grep ${OS_ARCH}.tar.gz -A 0`
 jackett_latest=`echo "${jackett_releases}" | awk 'NR==1' | sed -r 's/.*href="([^"]+).*/\1/g'`
 jackett_src_url="https://github.com${jackett_latest}"
 # Fetch latest radarr, lidarr and sonarr builds. Links below select latest release.
