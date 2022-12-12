@@ -19,8 +19,8 @@ jackett_releases=`curl -s https://github.com/Jackett/Jackett/releases | awk -F"[
 jackett_latest=`echo "${jackett_releases}" | awk 'NR==1' | sed -r 's/.*href="([^"]+).*/\1/g'`
 jackett_src_url="https://github.com${jackett_latest}"
 # Fetch latest radarr, lidarr and sonarr builds. Links below select latest release.
-radarr_src_url='https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'
-lidarr_src_url='https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'
+radarr_src_url="https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${OS_ARCH}"
+lidarr_src_url="https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${OS_ARCH}"
 sonarr_src_url='https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux'
 
 # Function to output PiJARR ascii and details of script.
