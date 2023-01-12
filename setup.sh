@@ -10,8 +10,10 @@ readonly OS_CODENAME=$(cat /etc/os-release | grep -oP "VERSION_CODENAME=\K\w+")
 
 if [[ $(uname -m | grep 'armv7l') ]]; then
     readonly OS_ARCH="ARM32"
+    readonly SERVARR_ARCH="arm"
 elif [[ $(uname -m | grep 'aarch64') ]]; then
     readonly OS_ARCH="ARM64"
+    readonly SERVARR_ARCH="arm64"
 fi
 
 # Fetch latest jackett ARM32 release from https://github.com/Jackett/Jackett/releases
@@ -19,9 +21,10 @@ jackett_releases=`curl -s https://github.com/Jackett/Jackett/releases | awk -F"[
 jackett_latest=`echo "${jackett_releases}" | awk 'NR==1' | sed -r 's/.*href="([^"]+).*/\1/g'`
 jackett_src_url="https://github.com${jackett_latest}"
 # Fetch latest radarr, lidarr and sonarr builds. Links below select latest release.
-radarr_src_url='https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'
-lidarr_src_url='https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm'
-sonarr_src_url='https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux'
+
+radarr_src_url="https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
+lidarr_src_url="https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
+sonarr_src_url="https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux"
 
 # Function to output PiJARR ascii and details of script.
 script_info() {
@@ -135,6 +138,15 @@ check_superuser() {
     fi
 }
 
+# Function to for ARM arch
+check_arch() {
+    if [[ -z "${OS_ARCH}" ]] >/dev/null 2>&1; then
+        term_message rb "Script requires a Raspberry Pi with ARM Architecture\n"
+        exit 1
+    fi
+}
+
+
 pkg_update() {
     term_message cb "Updating packages using apt update..."
     apt update -y
@@ -191,15 +203,6 @@ setup_dependencies() {
     term_message db "Setup Dependencies"
     term_message c "Installing required dependencies..."
     pkg_install apt-transport-https dirmngr gnupg ca-certificates
-    #term_message c "Adding repository key and apt source for mono..."
-    #mkdir -p /root/.gnupg
-    #chmod -R 600 /root/.gnupg
-    #gpg --no-default-keyring --keyring /usr/share/keyrings/mono-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 \
-    #--recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >/dev/null 2>&1
-    #echo "deb [signed-by=/usr/share/keyrings/mono-archive-keyring.gpg] https://download.mono-project.com/repo/debian stable-raspbianbuster main" | \
-    #tee /etc/apt/sources.list.d/mono-official-stable.list >/dev/null 2>&1
-    #term_message c "Updating packages to include newly added source..."
-    #pkg_update
     term_message c "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-complete mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
 }
@@ -405,6 +408,7 @@ main() {
     term_colors
     script_info
     check_superuser
+    check_arch
     check_continue
     pkg_update
     pkg_upgrade
