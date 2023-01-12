@@ -6,6 +6,11 @@
 
 A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr) and [Prowlarr](https://github.com/Prowlarr/Prowlarr) on a **Raspberry Pi**.
 
+### WHAT ARR THEY?
+
+[Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users) and [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr)
+
+
 
 ### 2023 UPDATE  
 - [x] Modified to support 64-bit Raspberry Pi OS ARM sources.  
@@ -21,7 +26,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 - The removal of applications is only going to work if the PiJARR script was used for the original installation.  
 - When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
 
-### MENU OPTIONS
+### EXAMPLE - MENU OPTIONS
 
 ```
 ==============
