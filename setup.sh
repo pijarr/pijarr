@@ -4,8 +4,8 @@ set -o errexit
 set -o pipefail
 
 # Set valid applications which can be used with this script
-# Tested applications are jackett lidarr radarr sonarr
-readonly VALID_APPS=(jackett lidarr radarr sonarr)
+# Tested applications are jackett lidarr radarr sonarr readarr prowlarr
+readonly VALID_APPS=(jackett lidarr radarr sonarr readarr prowlarr)
 readonly OS_CODENAME=$(cat /etc/os-release | grep -oP "VERSION_CODENAME=\K\w+")
 
 if [[ $(uname -m | grep 'armv7l') ]]; then
@@ -24,6 +24,8 @@ jackett_src_url="https://github.com${jackett_latest}"
 
 radarr_src_url="https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 lidarr_src_url="https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
+prowlarr_src_url="http://prowlarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
+readarr_src_url="http://readarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 sonarr_src_url="https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux"
 
 # Function to output PiJARR ascii and details of script.
@@ -37,9 +39,9 @@ ${RED}▓▓▓▓          ▓▓▓▓${RESET} ▓▓▓▓     ▓▓▓▓ �
 ${RED}▓▓▓▓          ▓▓▓▓${RESET} ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓
 
 Name:           pijarr/setup.sh
-Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, and Lidarr
+Description:    Raspberry Pi installer for Jackett, Sonarr, Radarr, Lidarr, Readarr and Prowler
 Author:         github.com/pijarr
-Tested:         Raspberry Pi 3 & 4 running Raspbian Buster
+Tested:         Raspberry Pi 3 & 4 running Raspberry Pi OS
 
 Notes:          Requiries sudo/root superuser permissions to run.
 
@@ -231,8 +233,9 @@ setup_app() {
         useradd -s /usr/sbin/nologin -d /var/lib/"${app_user}" -r -m -U "${app_user}" &>/dev/null || true
         task_done
         term_message c "Fetching ${app_name} source file..."
+        term_message d "Source URL: ${src_url}"
         wget -O "${temp_dir}"/"${new_file}" -q --show-progress --progress=bar:force "${src_url}" 2>&1 &&
-            task_done "Source file downloaded.$(tput el)"
+            task_done "Source file downloaded. SHA256: $(sha256sum ${temp_dir}/${new_file} | cut -d ' ' -f 1)$(tput el)"
         term_message c "Extracting ${new_file} to /opt/..."
         tar -xf "${temp_dir}"/"${new_file}" -C /opt/
         task_start "Set user permissions on /opt/${app_name^}"
@@ -288,6 +291,8 @@ check_status() {
     task_start "Sonarr:     http://${hostip}:8989" && is_active sonarr
     task_start "Lidarr:     http://${hostip}:8686" && is_active lidarr
     task_start "Radarr:     http://${hostip}:7878" && is_active radarr
+    task_start "Readarr:    http://${hostip}:8787" && is_active readarr
+    task_start "Prowlarr:   http://${hostip}:9696" && is_active prowlarr
 }
 
 # Function to assist in removing the applications and their configuration files
@@ -320,31 +325,35 @@ any_key() {
 
 # Display a list of menu items for selection
 display_menu () {
-    echo "====================="                         
-    echo " PiJARR Menu Options "
-    echo "====================="
+    echo "=============="                         
+    echo " Menu Options "
+    echo "=============="
     echo
-    echo -e "1.  Install ALL applications jackett sonarr lidarr and radarr"
+    echo -e "1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr)"
     echo -e "2.  Install jackett only"
     echo -e "3.  Install sonarr only"
     echo -e "4.  Install lidarr only"
     echo -e "5.  Install radarr only"
-    echo -e "\n6.  Remove ALL applications jackett sonarr lidarr and radarr"
-    echo -e "7.  Remove jackett only"
-    echo -e "8.  Remove sonarr only"
-    echo -e "9.  Remove lidarr only"
-    echo -e "10. Remove radarr only"
-    echo -e "\n11. Check application service status"
-    echo -e "\n12. Exit"
+    echo -e "6.  Install readarr only"
+    echo -e "7.  Install prowlarr only"
+    echo -e "\n8.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr)"
+    echo -e "9.  Remove jackett only"
+    echo -e "10. Remove sonarr only"
+    echo -e "11. Remove lidarr only"
+    echo -e "12. Remove radarr only"
+    echo -e "13. Remove readarr only"
+    echo -e "14. Remove prowlarr only"
+    echo -e "\n15. Check application service status"
+    echo -e "\n16. Exit"
     echo
-    echo -n "   Enter option [1-12]: "
+    echo -n "    Enter option [1-16]: "
 
     while :
     do
     read choice
     case ${choice} in
-    1)  echo -e "\nInstalling ALL applications jackett sonarr lidarr and radarr..."
-        setup_app jackett sonarr lidarr radarr
+    1)  echo -e "\nInstalling all six applications (jackett sonarr lidarr radarr readarr prowlarr)..."
+        setup_app jackett sonarr lidarr radarr readarr prowlarr
         remove_temp
         check_status
         ;;
@@ -368,32 +377,52 @@ display_menu () {
         remove_temp
         check_status
         ;;
-    6)  echo -e "\nRemoving ALL applications jackett sonarr lidarr and radarr..."
-        remove_app jackett sonarr lidarr radarr
+    6)  echo -e "\nInstalling readarr..."
+        setup_app readarr
+        remove_temp
         check_status
         ;;
-    7)  echo -e "\nRemoving jackett..."
+    7)  echo -e "\nInstalling prowlarr..."
+        setup_app prowlarr
+        remove_temp
+        check_status
+        ;;
+    8)  echo -e "\nRemoving all six applications (jackett sonarr lidarr radarr readarr prowlarr)..."
+        remove_app jackett sonarr lidarr radarr readarr prowlarr
+        check_status
+        ;;
+    9)  echo -e "\nRemoving jackett..."
         remove_app jackett
         check_status
         ;;
-    8)  echo -e "\nRemoving sonarr..."
+    10)  echo -e "\nRemoving sonarr..."
         remove_app sonarr
         check_status
         ;;
-    9)  echo -e "\nRemoving lidarr..."
+    11)  echo -e "\nRemoving lidarr..."
         remove_app lidarr
         check_status
         ;;
-    10) echo -e "\nRemoving radarr..."
+    12) echo -e "\nRemoving radarr..."
         remove_app radarr
         check_status
         ;;
-    11) check_status
+    13)  echo -e "\nRemoving readarr..."
+        remove_app readarr
+        check_status
         ;;
-    12) echo -e "\nExiting...\n"
-        exit;;
+    14) echo -e "\nRemoving prowlarr..."
+        remove_app prowlarr
+        check_status
+        ;;
+    15) check_status
+        ;;
+    16) echo -e "\nExiting...\n"
+        exit
+        ;;
     *)  clear
-        display_menu;;
+        display_menu
+        ;;
     esac
     echo -e "\nSelection [${choice}] completed."
     any_key
