@@ -4,7 +4,7 @@
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 [![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
-A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr) and [Prowlarr](https://github.com/Prowlarr/Prowlarr) on a **Raspberry Pi**.
+A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr) and [Prowlarr](https://github.com/Prowlarr/Prowlarr) on a **Raspberry Pi** and Intel/AMD x64 systems running Debian based distros.
 
 ### WHAT ARR THEY?
 
@@ -14,12 +14,14 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 
 ### 2023 UPDATE  
 - [x] Modified to support 64-bit Raspberry Pi OS ARM sources.  
+- [x] Now also supports x64 Intel and AMD systems running Debian based distros.
 - [x] Added Readarr and Prowlarr to application list.
 
 ### TESTED 
 
 - [x] *Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)*
 - [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
+- [x] *Intel i7 running Debian GNU/Linux 11 (bullseye) 5.10.0-20-amd64*
 
 ### NOTES
 - During setup dependencies mono install may take some time (especially on the Raspberry Pi v3). Larger dependency install may slow around 88-90% however it will eventually complete.    
@@ -29,6 +31,12 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 ### EXAMPLE - MENU OPTIONS
 
 ```
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓          ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
+    ▓▓▓▓     ▓▓▓▓               ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
+    ▓▓▓▓          ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓   ▓▓▓▓   ▓▓▓▓   ▓▓▓▓
+    ▓▓▓▓          ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓
+    
 ==============
  Menu Options 
 ==============
@@ -49,11 +57,12 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 13. Remove readarr only
 14. Remove prowlarr only
 
-15. Check application service status
+15. Show active services
+16. Show application default ports
+17. Show application source urls
 
-16. Exit
+18. Exit
 
-    Enter option [1-16]:
 ```
 
 ### DEFAULT APP PORT NUMBERS
