@@ -81,11 +81,11 @@ Prowlarr    http://<ipaddress>:9696
 Use the curl or wget command lines shown below for quick setup.
 
 ```
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
 ```
 
 ```
-sudo bash -c "$(wget -O- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
+sudo sh -c "$(wget -O- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
 ```
 
 #### **Method 2:** Clone and run locally. 
@@ -93,5 +93,5 @@ sudo bash -c "$(wget -O- https://raw.githubusercontent.com/pijarr/pijarr/master/
 
 ```
 git clone https://github.com/pijarr/pijarr.git
-sudo bash pijarr/setup.sh
+sudo sh pijarr/setup.sh
 ```
