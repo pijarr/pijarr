@@ -158,8 +158,7 @@ esac
 ### END CHECK SYSTEM REQUIREMENTS AND ARCHITECTURE ###
 
 # Fetch latest jackett release from https://github.com/Jackett/Jackett/releases
-jackett_releases=$(curl -s https://github.com/Jackett/Jackett/releases | awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' | grep Linux${JACKETT_ARCH}.tar.gz -A 0)
-jackett_latest=$(echo "${jackett_releases}" | awk 'NR=1' | sed -r 's/.*href="([^"]+).*/\1/g')
+jackett_latest=$(curl -s https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
 jackett_src_url="https://github.com${jackett_latest}"
 
 # Fetch latest radarr, lidarr and sonarr builds. Links below select latest release.
@@ -237,7 +236,7 @@ pkg_install() {
 # Function to install all the dependencies including packages and server keys.
 setup_dependencies() {
     task_info "Installing required dependencies..."
-    pkg_install apt-transport-https dirmngr gnupg ca-certificates
+    pkg_install curl apt-transport-https dirmngr gnupg ca-certificates
     task_info "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-complete mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
 }
@@ -298,8 +297,13 @@ setup_app() {
         new_file="${app_name}.tar.gz"
         task_info "Commencing install for ${app_name}..."
         task_start "Adding service user account..."
-        useradd -s /usr/sbin/nologin -d /var/lib/"${app_user}" -r -m -U "${app_user}" 2> /dev/null
-        check_result
+        if id "${app_user}" >/dev/null 2>&1; then
+            task_info "User account for ${app_user} already exists."
+            task_pass
+        else
+            useradd -s /usr/sbin/nologin -d /var/lib/"${app_user}" -r -m -U "${app_user}" 2> /dev/null
+            check_result
+        fi
         task_info "Download source URL: ${src_url}"
         wget -O "${temp_dir}"/"${new_file}" -q --show-progress --progress=bar:force "${src_url}" 2>&1 &&
         task_pass "Source file downloaded. SHA256: $(sha256sum ${temp_dir}/${new_file} | cut -d ' ' -f 1)$(tput el)"
