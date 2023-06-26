@@ -21,7 +21,8 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 
 - [x] *Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)*
 - [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
-- [x] *Intel i7 running Debian GNU/Linux 11 (bullseye) 5.10.0-20-amd64*
+- [x] *Intel i7 running Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64 
+- [x] *Intel i7 running Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
 
 ### NOTES
 - During setup dependencies mono install may take some time (especially on the Raspberry Pi v3). Larger dependency install may slow around 88-90% however it will eventually complete.    
