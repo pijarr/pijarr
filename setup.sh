@@ -298,8 +298,7 @@ setup_app() {
         task_info "Commencing install for ${app_name}..."
         task_start "Adding service user account..."
         if id "${app_user}" >/dev/null 2>&1; then
-            task_info "User account for ${app_user} already exists."
-            task_pass
+            task_pass "User account for ${app_user} already exists."
         else
             useradd -s /usr/sbin/nologin -d /var/lib/"${app_user}" -r -m -U "${app_user}" 2> /dev/null
             check_result
