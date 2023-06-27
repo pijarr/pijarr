@@ -154,12 +154,18 @@ case "${systemInfo}" in
                                     echo ""
                                     exit 1 ;;
 esac
-
 ### END CHECK SYSTEM REQUIREMENTS AND ARCHITECTURE ###
 
 # Fetch latest jackett release from https://github.com/Jackett/Jackett/releases
-jackett_latest=$(curl -s https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
-jackett_src_url="https://github.com${jackett_latest}"
+if command -v curl >/dev/null 2>&1; then
+    # Run the curl command
+    jackett_latest=$(curl -s https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
+    jackett_src_url="https://github.com${jackett_latest}"
+else command -v wget >/dev/null 2>&1; then
+    # Run the wget command
+    jackett_latest=$(wget -qO- https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
+    jackett_src_url="https://github.com${jackett_latest}"
+fi
 
 # Fetch latest radarr, lidarr and sonarr builds. Links below select latest release.
 radarr_src_url="https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
