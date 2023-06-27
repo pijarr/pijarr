@@ -348,10 +348,15 @@ setup_app() {
             unzip "${temp_dir}/${new_file}" -d "${app_opt_path}"
             task_info "Creating Python virtual environment (venv) for bazarr..."
             python3 -m venv "${app_opt_path}/venv"
-            task_info "Activate Python vnev for bazarr to install requirements..."
-            source "${app_opt_path}/venv/bin/activate"
-            task_info "Installing Bazarr Python requirements..."
+            task_start "Activate Python venv for bazarr to install requirements..."
+            # /bin/sh alternative for source command
+            . "${app_opt_path}/venv/bin/activate"
+            check_result
+            task_info "Installing Bazarr Python import module requirements..."
             pip install -r "${app_opt_path}/requirements.txt"
+            task_start "Deactivate Python venv..."
+            deactivate
+            check_result
         else
             tar -xf "${temp_dir}/${new_file}" -C "/opt/"
         fi
