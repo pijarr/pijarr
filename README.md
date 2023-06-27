@@ -86,14 +86,14 @@ Bazarr:     http://hostip:6767
 
 ### USAGE 
 #### **Method 1 (Quick easy setup):** 
-Use the curl or wget command lines shown below for quick setup.
+Use the wget or curl command lines shown below for quick setup.
+
+```
+sudo sh -c "$(wget -qO- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
+```
 
 ```
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
-```
-
-```
-sudo sh -c "$(wget -O- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
 ```
 
 #### **Method 2:** Clone and run locally. 
