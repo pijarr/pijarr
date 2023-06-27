@@ -344,7 +344,7 @@ setup_app() {
         wget -O "${temp_dir}"/"${new_file}" -q --show-progress --progress=bar:force "${src_url}" 2>&1 &&
         task_pass "Source file downloaded. SHA256: $(sha256sum ${temp_dir}/${new_file} | cut -d ' ' -f 1)$(tput el)"
         task_info "Extracting ${temp_dir}/${new_file} to ${app_opt_path}..."
-        if [ "${app_name}" == "bazarr" ]; then
+        if [ "${app_name}" = "bazarr" ]; then
             unzip "${temp_dir}/${new_file}" -d "${app_opt_path}"
             task_info "Creating Python virtual environment (venv) for bazarr..."
             python3 -m venv "${app_opt_path}/venv"
