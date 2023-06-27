@@ -14,7 +14,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 
 - [x] Added support for bazarr. *Note: Requires Python3 and other packages.*
 - [x] Clean up code, and introduced more validation.
-- [x] Test Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64 
+- [x] Tested on Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64 
 
 ### 2023 UPDATE 
 - [x] Modified to support 64-bit Raspberry Pi OS ARM sources.  
