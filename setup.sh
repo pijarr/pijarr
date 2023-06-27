@@ -317,13 +317,14 @@ setup_app() {
         app_config_path="/var/lib/${app_name}/.config/$(title_case ${app_name})"
         if [ "${app}" = "bazarr" ]; then
             setup_bazarr_dependencies
+            file_extension="zip"
+        else
+            file_extension="tar.gz"
         fi
         app_user="${app_name}"
         app_group="media"
         src_url=${app_name}\_src_url
         src_url=$(eval echo \$"$src_url")
-        src_file="$(basename "${src_url}")"
-        file_extension="${src_file#*.}"
         new_file="${app_name}.${file_extension}"
         task_info "Commencing install for ${app_name}..."
         task_start "Adding service user account..."
