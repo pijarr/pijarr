@@ -4,9 +4,9 @@
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 [![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
-A shell script to automate the installation and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on on Debian based distros. Including Debian Bulleye and Bookworm, Raspberry PI OS, Ubuntu, Pop!_OS Kali etc. Supports ARM **Raspberry Pi** and Intel/AMD x64 systems.
+A shell script to automate the installation and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on on Debian based distros. Including Debian 11 (bullseye) and 12 (bookworm), Raspberry PI OS, Ubuntu, Pop!_OS Kali etc. Supports ARM **Raspberry Pi** and Intel/AMD x64 systems.
 
-### WHAT ARR THEY?  
+### WHAT ARR THEY?
   
 [Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users), [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr), and [Bazarr](https://github.com/morpheus65535/bazarr) ( a companion application to Sonarr and Radarr to manages and download subtitles.)
 
