@@ -327,14 +327,14 @@ setup_app() {
         src_url=$(eval echo \$"$src_url")
         new_file="${app_name}.${file_extension}"
         task_info "Commencing install for ${app_name}..."
-        task_start "Adding service user account..."
+        task_start "Adding ${app_user} service user..."
         if id "${app_user}" >/dev/null 2>&1; then
             task_pass "User account for ${app_user} already exists."
         else
             useradd -s /usr/sbin/nologin -d "/var/lib/${app_user}" -r -m -U "${app_user}" 2> /dev/null
             check_result
         fi
-        task_start "Adding service group..."
+        task_start "Adding ${app_group} service group..."
         if getent group "${app_group}" >/dev/null 2>&1; then
             task_pass "Group ${app_group} already exists."
         else
