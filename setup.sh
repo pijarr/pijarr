@@ -421,8 +421,8 @@ EOF
 remove_app() {
     clear
     for app in "${@}"; do
-        app=$(lower_case ${app})
-        app_opt_path="/opt/$(title_case ${app})"
+        app=$(lower_case "${app}")
+        app_opt_path="/opt/$(title_case "${app}")"
         app_lib_path="/var/lib/${app}"
         task_warn "You are about to delete all settings and files for ${app}..."
         check_continue
@@ -431,7 +431,7 @@ remove_app() {
         systemctl stop "${app}" 2> /dev/null
         task_pass
         task_start "Removing ${app_opt_path}..."
-        if [[ "${app_opt_path}" != "/opt" && "${app_opt_path}" != "/opt/" ]]; then
+        if [ "${app_opt_path}" != "/opt" ] && [ "${app_opt_path}" != "/opt/" ]; then
             rm -rf "${app_opt_path}" 2> /dev/null
             task_pass
         else
@@ -439,7 +439,7 @@ remove_app() {
         fi
 
         task_start "Removing ${app_lib_path}..."
-        if [[ "${app_lib_path}" != "/var/lib" && "${app_lib_path}" != "/var/lib/" ]]; then
+        if [ "${app_lib_path}" != "/var/lib" ] && [ "${app_lib_path}" != "/var/lib/" ]; then
             rm -rf "${app_lib_path}" 2> /dev/null
             task_pass
         else
