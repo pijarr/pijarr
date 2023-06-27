@@ -14,18 +14,20 @@ A shell script to automate the installation and configuration of [Jackett](https
 
 - [x] Added support for Bazarr installation. *Note: Requires Python3 and other packages.*
 - [x] Clean up code, and introduced more validation.
-- [x] Tested on Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64
 
-### PREVIOUSLY TESTED
+### TESTED
 
-- [x] *Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)*
-- [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
-- [x] *Intel i7 running Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
+- [x] x64 Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64  
+- [x] x64 Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64  
+- [x] *Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)*  
+- [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*  
 
 ### NOTES
 - The applications can run on a Raspberry Pi 3 however it will be slow. A Pi 4 or other x64 hardware or virtual machine would be recommended.
-- During setup and installation of larger dependencies such mono the installation may appear to stall/hang (especially on a Pi 3) however it will eventually complete.
-- Bazarr will require additional disk space for Python and the other packages it requires. 
+- During installation larger dependencies such mono may appear to stall or hang (more so on slower machines such as a Pi 3) however it will eventually complete.
+- Bazarr may require additional disk space for Python and other packages.
+- Bazarr will configured to run using a Python virtual environment (venv).
+- A desktop environment such GNOME, KDE is not required. Can run on base minimal terminal install (headless).
 - The removal of applications is only going to work if the PiJARR script was used for the original installation.
 - When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
 
