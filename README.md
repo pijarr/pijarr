@@ -4,7 +4,7 @@
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 [![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
-A bash shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on a **Raspberry Pi** and Intel/AMD x64 systems running Debian based distros.
+A shell script to automate the setup and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on a **Raspberry Pi** and Intel/AMD x64 systems running Debian based distros.
 
 ### WHAT ARR THEY?  
   
@@ -12,7 +12,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 
 ### June 2023 UPDATE 
 
-- [x] Added support for bazarr. *Note: Requires Python3 and other packages.*
+- [x] Added support for Bazarr installation. *Note: Requires Python3 and other packages.*
 - [x] Clean up code, and introduced more validation.
 - [x] Tested on Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64 
 
@@ -46,7 +46,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
  Menu Options 
 ==============
 
-1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr)
+1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)
 2.  Install jackett only
 3.  Install sonarr only
 4.  Install lidarr only
@@ -55,7 +55,7 @@ A bash shell script to automate the setup and configuration of [Jackett](https:/
 7.  Install prowlarr only
 8.  Install bazarr only
 
-9.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr)
+9.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)
 10. Remove jackett only
 11. Remove sonarr only
 12. Remove lidarr only
