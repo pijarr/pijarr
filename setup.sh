@@ -315,7 +315,7 @@ setup_app() {
         app_opt_path="/opt/$(title_case ${app_name})"
         app_lib_path="/var/lib/${app}"
         app_config_path="/var/lib/${app_name}/.config/$(title_case ${app_name})"
-        if [ "${app}" == "bazarr" ]; then
+        if [ "${app}" = "bazarr" ]; then
             setup_bazarr_dependencies
         fi
         app_user="${app_name}"
