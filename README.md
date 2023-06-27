@@ -4,7 +4,7 @@
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 [![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
-A shell script to automate the installation and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on on Debian based distros. Including Raspberry PI OS, Debian Bulleyes and Bookworm, Ubuntu, Pop!_OS Kali etc. Includes support for ARM **Raspberry Pi** and Intel/AMD x64 systems.
+A shell script to automate the installation and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on on Debian based distros. Including Debian Bulleye and Bookworm, Raspberry PI OS, Ubuntu, Pop!_OS Kali etc. Supports ARM **Raspberry Pi** and Intel/AMD x64 systems.
 
 ### WHAT ARR THEY?  
   
