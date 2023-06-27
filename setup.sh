@@ -161,7 +161,7 @@ if command -v curl >/dev/null 2>&1; then
     # Run the curl command
     jackett_latest=$(curl -s https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
     jackett_src_url="https://github.com${jackett_latest}"
-else command -v wget >/dev/null 2>&1; then
+else
     # Run the wget command
     jackett_latest=$(wget -qO- https://github.com/Jackett/Jackett/releases | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep Linux${JACKETT_ARCH}.tar.gz -A 0 | head -n 1)
     jackett_src_url="https://github.com${jackett_latest}"
