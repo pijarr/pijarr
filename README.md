@@ -10,26 +10,22 @@ A shell script to automate the installation and configuration of [Jackett](https
   
 [Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users), [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr), and [Bazarr](https://github.com/morpheus65535/bazarr) ( a companion application to Sonarr and Radarr to manages and download subtitles.)
 
-### June 2023 UPDATE 
+### LATEST UPDATE
 
 - [x] Added support for Bazarr installation. *Note: Requires Python3 and other packages.*
 - [x] Clean up code, and introduced more validation.
-- [x] Tested on Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64 
+- [x] Tested on Debian GNU/Linux 12 (bookworm) 6.1.0-9-amd64
 
-### 2023 UPDATE 
-- [x] Modified to support 64-bit Raspberry Pi OS ARM sources.  
-- [x] Now also supports x64 Intel and AMD systems running Debian based distros.
-- [x] Added Readarr and Prowlarr to application list.
-
-### PREVIOUSLY TESTED 
+### PREVIOUSLY TESTED
 
 - [x] *Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)*
 - [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*
 - [x] *Intel i7 running Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
 
 ### NOTES
-- During setup dependencies mono install may take some time (especially on the Raspberry Pi v3). Larger dependency install may slow around 88-90% however it will eventually complete.    
-- The removal of applications is only going to work if the PiJARR script was used for the original installation.  
+- The applications can run on a Raspberry Pi 3 however it will be slow. A Pi 4 or other x64 hardware or virtual machine would be recommended.
+- During setup dependencies mono install may take some time (especially on the Raspberry Pi v3). Larger mono dependency installs may slow and appear to stall however will eventually complete. 
+- The removal of applications is only going to work if the PiJARR script was used for the original installation.
 - When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
 
 ### EXAMPLE - MENU OPTIONS
