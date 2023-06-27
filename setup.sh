@@ -323,7 +323,7 @@ setup_app() {
         src_url=${app_name}\_src_url
         src_url=$(eval echo \$"$src_url")
         src_file="$(basename "${src_url}")"
-        file_extension="${src_file##*.}"
+        file_extension="${src_file#*.}"
         new_file="${app_name}.${file_extension}"
         task_info "Commencing install for ${app_name}..."
         task_start "Adding service user account..."
@@ -501,7 +501,7 @@ display_menu () {
     echo " Menu Options "
     echo "=============="
     echo
-    printf "1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr)\n"
+    printf "1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)\n"
     printf "2.  Install jackett only\n"
     printf "3.  Install sonarr only\n"
     printf "4.  Install lidarr only\n"
@@ -509,7 +509,7 @@ display_menu () {
     printf "6.  Install readarr only\n"
     printf "7.  Install prowlarr only\n"
     printf "8.  Install bazarr only\n"
-    printf "\n9.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr)\n"
+    printf "\n9.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)\n"
     printf "10. Remove jackett only\n"
     printf "11. Remove sonarr only\n"
     printf "12. Remove lidarr only\n"
@@ -528,7 +528,7 @@ display_menu () {
     do
     read choice
     case ${choice} in
-        1)  setup_app jackett sonarr lidarr radarr readarr prowlarr
+        1)  setup_app jackett sonarr lidarr radarr readarr prowlarr bazarr
             ;;
         2)  setup_app jackett
             ;;
