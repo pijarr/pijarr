@@ -8,7 +8,7 @@ A shell script to automate the installation and configuration of [Jackett](https
 
 ### WHAT ARR THEY?
   
-[Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users), [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr), and [Bazarr](https://github.com/morpheus65535/bazarr) ( a companion application to Sonarr and Radarr to manages and download subtitles.)
+[Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users), [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr), and [Bazarr](https://github.com/morpheus65535/bazarr) (a companion application to Sonarr and Radarr to manages and download subtitles.)
 
 ### LATEST UPDATE
 
@@ -24,7 +24,8 @@ A shell script to automate the installation and configuration of [Jackett](https
 
 ### NOTES
 - The applications can run on a Raspberry Pi 3 however it will be slow. A Pi 4 or other x64 hardware or virtual machine would be recommended.
-- During setup dependencies mono install may take some time (especially on the Raspberry Pi v3). Larger mono dependency installs may slow and appear to stall however will eventually complete. 
+- During setup and installation of larger dependencies such mono the installation may appear to stall/hang (especially on a Pi 3) however it will eventually complete.
+- Bazarr will require additional disk space for Python and the other packages it requires. 
 - The removal of applications is only going to work if the PiJARR script was used for the original installation.
 - When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
 
