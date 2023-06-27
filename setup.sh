@@ -4,7 +4,7 @@ clear
 ### SET GLOBAL VARIABLES ###
 
 TEMPDIR="/tmp/pijarr"
-APPLIST="jackett sonarr lidarr radarr readarr prowlarr"
+APPLIST="jackett sonarr lidarr radarr readarr prowlarr bazarr"
 
 # Set terminal global variable for colors if supported.
 if [ -t 1 ]; then
@@ -167,6 +167,7 @@ lidarr_src_url="https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&
 prowlarr_src_url="http://prowlarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 readarr_src_url="http://readarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 sonarr_src_url="https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux"
+bazarr_src_url="https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
 
 check_sources() {
     task_info "Application Installation Source URLs"
@@ -213,6 +214,7 @@ pkg_updates() {
     task_info "Updating and upgrading packages using apt..."
     apt update
     apt upgrade -y
+    apt --fix-broken install -y
     apt autoclean -y 2> /dev/null
     apt autoremove -y 2> /dev/null
 }
@@ -236,32 +238,46 @@ pkg_install() {
 # Function to install all the dependencies including packages and server keys.
 setup_dependencies() {
     task_info "Installing required dependencies..."
-    pkg_install curl apt-transport-https dirmngr gnupg ca-certificates
+    pkg_install curl unzip apt-transport-https dirmngr gnupg ca-certificates
     task_info "Installing mono, sqlite3 and supporting libraries..."
     pkg_install mono-complete mediainfo sqlite3 libmono-cil-dev libchromaprint-tools
+}
+
+setup_bazarr_dependencies() {
+    task_info "Installing required Bazarr dependencies..."
+    pkg_install python3-dev python3-pip python3-libxml2 python3-lxml unrar-free unar ffmpeg libxml2-dev libxslt1-dev libatlas-base-dev
+    python_version=$(python3 -V 2>&1 | grep -Po '(?<=Python )\d+\.\d+')
+    # Attempt to install specific python3-venv version
+    if ! pkg_install python${python_version}-venv; then
+        # If installation fails, install the default python3-venv
+        pkg_install python3-venv
+    fi
 }
 
 # Function to output PiJARR ascii and details of script.
 banner_info() {
     printf '%s\n' "                                                               
-    ${RED}▓▓▓▓▓▓▓▓▓▓▓▓▓ ${GREEN}▓▓▓▓${RESET}          ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ${RED}▓▓▓▓     ▓▓▓▓     ${RESET}          ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓
-    ${RED}▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓${RESET} ▓▓▓▓     ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ${RED}▓▓▓▓          ▓▓▓▓${RESET} ▓▓▓▓     ▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓   ▓▓▓▓   ▓▓▓▓   ▓▓▓▓
-    ${RED}▓▓▓▓          ▓▓▓▓${RESET} ▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓     ▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓ ▓▓▓▓    ▓▓▓▓▓
+    ${RED}▓▓▓▓▓▓▓▓▓▓▓▓ ${GREEN}▓▓▓▓${RESET}         ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓
+    ${RED}▓▓▓▓    ▓▓▓▓     ${RESET}         ▓▓▓▓ ▓▓▓▓    ▓▓▓▓ ▓▓▓▓    ▓▓▓▓ ▓▓▓▓    ▓▓▓▓
+    ${RED}▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓${RESET} ▓▓▓▓    ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓
+    ${RED}▓▓▓▓         ▓▓▓▓${RESET} ▓▓▓▓    ▓▓▓▓ ▓▓▓▓    ▓▓▓▓ ▓▓▓▓  ▓▓▓▓   ▓▓▓▓  ▓▓▓▓
+    ${RED}▓▓▓▓         ▓▓▓▓${RESET} ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓    ▓▓▓▓ ▓▓▓▓   ▓▓▓▓▓ ▓▓▓▓   ▓▓▓▓▓
     "
 }
 
 script_info() {
     banner_info
     printf '%s\n' "
-    Description:    Installer for Jackett, Sonarr, Radarr, Lidarr, Readarr and Prowler
+    Description:    Installer for Jackett, Sonarr, Radarr, Lidarr, Readarr, Prowler, and *Bazarr
                     Tested with Raspberry Pi 3 & 4 32-Bit or 64-Bit running offical Raspberry Pi OS
                     Compatibility with other Intel AMD x64 (64-bit only) Debian based Linux distros
 
     Author:         github.com/pijarr
 
     Notes:          Requiries sudo/root superuser permissions to run.
+
+                    *Bazarr requires Python3 and additional packages to be downloaded. It will be run
+                    in a Python virtual environment (venv) to avoid dependency issues.
 
                     Commands \"apt update upgrade autoclean autoremove\" will be run upon continue.
                     This is to ensure all packages are up to date and latest versions are used.
@@ -282,6 +298,7 @@ setup_app() {
     clear
     make_temp_dir
     setup_dependencies
+
     for app in "${@}"; do
         if [ $(systemctl is-active "${app}") = "active" ]; then
             task_skip "A service for ${app} is already exists."
@@ -289,60 +306,91 @@ setup_app() {
         fi
         date_stamp="$(date '+%Y-%m-%d %H%M')"
         app_name="$(lower_case ${app})"
+        app_opt_path="/opt/$(title_case ${app_name})"
+        app_lib_path="/var/lib/${app}"
+        app_config_path="/var/lib/${app_name}/.config/$(title_case ${app_name})"
+        if [ "${app}" == "bazarr" ]; then
+            setup_bazarr_dependencies
+        fi
         app_user="${app_name}"
-        app_group="${app_user}"
+        app_group="media"
         src_url=${app_name}\_src_url
         src_url=$(eval echo \$"$src_url")
-        src_file="$(basename \$"${src_url}")"
-        new_file="${app_name}.tar.gz"
+        src_file="$(basename "${src_url}")"
+        file_extension="${src_file##*.}"
+        new_file="${app_name}.${file_extension}"
         task_info "Commencing install for ${app_name}..."
         task_start "Adding service user account..."
         if id "${app_user}" >/dev/null 2>&1; then
             task_pass "User account for ${app_user} already exists."
         else
-            useradd -s /usr/sbin/nologin -d /var/lib/"${app_user}" -r -m -U "${app_user}" 2> /dev/null
+            useradd -s /usr/sbin/nologin -d "/var/lib/${app_user}" -r -m -U "${app_user}" 2> /dev/null
+            check_result
+        fi
+        task_start "Adding service group..."
+        if getent group "${app_group}" >/dev/null 2>&1; then
+            task_pass "Group ${app_group} already exists."
+        else
+            groupadd "${app_group}" 2> /dev/null
             check_result
         fi
         task_info "Download source URL: ${src_url}"
         wget -O "${temp_dir}"/"${new_file}" -q --show-progress --progress=bar:force "${src_url}" 2>&1 &&
         task_pass "Source file downloaded. SHA256: $(sha256sum ${temp_dir}/${new_file} | cut -d ' ' -f 1)$(tput el)"
-        task_start "Exacting ${temp_dir}/${new_file} to /opt/$(title_case ${app_name})..."
-        tar -xf "${temp_dir}"/"${new_file}" -C /opt/
-        check_result
-        task_start "Setting user permissions on /opt/$(title_case ${app_name})..."
-        chown -R "${app_user}":"${app_group}" /opt/"$(title_case ${app_name})"/
+        task_info "Extracting ${temp_dir}/${new_file} to ${app_opt_path}..."
+        if [ "${app_name}" == "bazarr" ]; then
+            unzip "${temp_dir}/${new_file}" -d "${app_opt_path}"
+            task_info "Creating Python virtual environment (venv) for bazarr..."
+            python3 -m venv "${app_opt_path}/venv"
+            task_info "Activate Python vnev for bazarr to install requirements..."
+            source "${app_opt_path}/venv/bin/activate"
+            task_info "Installing Bazarr Python requirements..."
+            pip install -r "${app_opt_path}/requirements.txt"
+        else
+            tar -xf "${temp_dir}/${new_file}" -C "/opt/"
+        fi
+        task_start "Setting user permissions on ${app_opt_path}..."
+        chown -R "${app_user}":"${app_group}" "${app_opt_path}"
         check_result
         # Just in case some apps have permission problems with their /var/lib config working directories.
         task_start "Creating /var/lib config files..."
-        mkdir -p /var/lib/"${app_name}"/.config/"$(title_case ${app_name})"
+        mkdir -p "${app_config_path}"
         check_result
-        task_start "Setting user permissions on /var/lib/${app_name}/.config/$(title_case ${app_name})..."
-        chown -R "${app_user}":"${app_group}" /var/lib/"${app_name}"/.config/"$(title_case ${app_name})"/ && 
+        task_start "Setting user permissions on ${app_lib_path}..."
+        chown -R "${app_user}":"${app_group}" "${app_lib_path}" && 
         check_result
         # Begin writting out the service configuration file. Minor change needed for Jackett.
         if [ "${app_name}" = "jackett" ]; then
-            app_exec="ExecStart=/opt/$(title_case ${app_name})/${app_name}_launcher.sh"
+            app_exec="${app_opt_path}/${app_name}_launcher.sh"
         elif [ "${app_name}" = "sonarr" ]; then
-            app_exec="ExecStart=/usr/bin/mono --debug /opt/$(title_case ${app_name})/$(title_case ${app_name}).exe -nobrowser"
+            app_exec="/usr/bin/mono --debug ${app_opt_path}/$(title_case ${app_name}).exe -nobrowser"
+        elif  [ "${app_name}" = "bazarr" ]; then
+            app_exec="${app_opt_path}/venv/bin/python ${app_opt_path}/bazarr.py"
         else
-            app_exec="ExecStart=/opt/$(title_case ${app_name})/$(title_case ${app_name})"
+            app_exec="${app_opt_path}/$(title_case ${app_name})"
         fi
         task_start "Writing service configuration file /etc/systemd/system/${app_name}.service..."
-        tee /etc/systemd/system/"${app_name}".service 1>/dev/null <<EOF
+
+    tee /etc/systemd/system/"${app_name}".service 1>/dev/null <<EOF
 # Generated by PiJARR ${date_stamp}
 [Unit]
 Description=$(title_case ${app_name}) Daemon
 After=syslog.target network.target
+
 [Service]
-SyslogIdentifier=${app_name}
-Restart=always
-RestartSec=5
-Type=simple
+WorkingDirectory=${app_opt_path}
 User=${app_user}
 Group=${app_group}
-WorkingDirectory=/opt/$(title_case ${app_name})
-${app_exec}
+UMask=0002
+SyslogIdentifier=${app_name}
+Restart=on-failure
+RestartSec=5
+Type=simple
+ExecStart=${app_exec}
+KillSignal=SIGINT
 TimeoutStopSec=20
+ExecStartPre=/bin/sleep 10
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -368,20 +416,31 @@ remove_app() {
     clear
     for app in "${@}"; do
         app=$(lower_case ${app})
+        app_opt_path="/opt/$(title_case ${app})"
+        app_lib_path="/var/lib/${app}"
         task_warn "You are about to delete all settings and files for ${app}..."
         check_continue
         task_info "Deleting existing settings or files for ${app}..."
         task_start "Stopping ${app} service..."
         systemctl stop "${app}" 2> /dev/null
         task_pass
-        task_start "Removing /opt/$(title_case ${app})..."
-        rm -Rf /opt/"$(title_case ${app})" 2> /dev/null
-        task_pass
-        task_start "Removing /var/lib/${app}..."
-        rm -Rf /var/lib/"${app}" 2> /dev/null
-        task_pass
+        task_start "Removing ${app_opt_path}..."
+        if [[ "${app_opt_path}" != "/opt" && "${app_opt_path}" != "/opt/" ]]; then
+            rm -rf "${app_opt_path}" 2> /dev/null
+            task_pass
+        else
+            task_skip "Skipping removal of default /opt/ directory."
+        fi
+
+        task_start "Removing ${app_lib_path}..."
+        if [[ "${app_lib_path}" != "/var/lib" && "${app_lib_path}" != "/var/lib/" ]]; then
+            rm -rf "${app_lib_path}" 2> /dev/null
+            task_pass
+        else
+            task_skip "Skipping removal of default /var/lib/ directory."
+        fi
         task_start "Removing service config /etc/systemd/system/${app}.service..."
-        rm /etc/systemd/system/"${app}.service"* 2> /dev/null
+        rm "/etc/systemd/system/${app}.service"* 2> /dev/null
         task_pass
         task_info "Removing ${app} service user account..."
         deluser "${app}" 2> /dev/null
@@ -420,6 +479,7 @@ default_ports() {
     task_info "Radarr:     http://hostip:7878"
     task_info "Readarr:    http://hostip:8787"
     task_info "Prowlarr:   http://hostip:9696"
+    task_info "Bazarr:     http://hostip:6767"
 }
 
 # Display a list of menu items for selection
@@ -437,19 +497,21 @@ display_menu () {
     printf "5.  Install radarr only\n"
     printf "6.  Install readarr only\n"
     printf "7.  Install prowlarr only\n"
-    printf "\n8.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr)\n"
-    printf "9.  Remove jackett only\n"
-    printf "10. Remove sonarr only\n"
-    printf "11. Remove lidarr only\n"
-    printf "12. Remove radarr only\n"
-    printf "13. Remove readarr only\n"
-    printf "14. Remove prowlarr only\n"
-    printf "\n15. Show active services\n"
-    printf "16. Show application default ports\n"
-    printf "17. Show application source urls\n"
-    printf "\n18. Exit\n"
+    printf "8.  Install bazarr only\n"
+    printf "\n9.  Remove ALL (jackett sonarr lidarr radarr readarr prowlarr)\n"
+    printf "10. Remove jackett only\n"
+    printf "11. Remove sonarr only\n"
+    printf "12. Remove lidarr only\n"
+    printf "13. Remove radarr only\n"
+    printf "14. Remove readarr only\n"
+    printf "15. Remove prowlarr only\n"
+    printf "16. Remove bazarr only\n"
+    printf "\n17. Show active services\n"
+    printf "18. Show application default ports\n"
+    printf "19. Show application source urls\n"
+    printf "\n20. Exit\n"
     echo
-    printf "    Enter option [1-18]: "
+    printf "    Enter option [1-20]: "
 
     while :
     do
@@ -469,30 +531,34 @@ display_menu () {
             ;;
         7)  setup_app prowlarr
             ;;
-        8)  remove_app jackett sonarr lidarr radarr readarr prowlarr
+        8)  setup_app bazarr
             ;;
-        9)  remove_app jackett
+        9)  remove_app jackett sonarr lidarr radarr readarr prowlarr bazarr
             ;;
-        10) remove_app sonarr
+        10)  remove_app jackett
             ;;
-        11) remove_app lidarr
+        11) remove_app sonarr
             ;;
-        12) remove_app radarr
+        12) remove_app lidarr
             ;;
-        13) remove_app readarr
+        13) remove_app radarr
             ;;
-        14) remove_app prowlarr
+        14) remove_app readarr
             ;;
-        15) clear
-            active_services
+        15) remove_app prowlarr
             ;;
-        16) clear
-            default_ports
+        16) remove_app bazarr
             ;;
         17) clear
+            active_services
+            ;;
+        18) clear
+            default_ports
+            ;;
+        19) clear
             check_sources
             ;;
-        18) printf "\nExiting...\n"
+        20) printf "\nExiting...\n"
             exit
             ;;
         *)  clear
