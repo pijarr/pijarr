@@ -12,7 +12,7 @@ A shell script to automate the installation and configuration of [Jackett](https
 
 ### LATEST UPDATE
 
-- [x] Added support for Bazarr installation. *Note: Requires Python3 and other packages.*
+- [x] Added support for [Bazarr](https://github.com/morpheus65535/bazarr) installation.
 - [x] Clean up code, and introduced more validation.
 
 ### TESTED
@@ -23,11 +23,12 @@ A shell script to automate the installation and configuration of [Jackett](https
 - [x] *Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)*  
 
 ### NOTES
-- The applications can run on a Raspberry Pi 3 however it will be slow. A Pi 4 or other x64 hardware or virtual machine would be recommended.
-- During installation larger dependencies such mono may appear to stall or hang (more so on slower machines such as a Pi 3) however it will eventually complete.
-- Bazarr may require additional disk space for Python and other packages.
-- Bazarr will configured to run using a Python virtual environment (venv).
-- A desktop environment such GNOME, KDE is not required. Can run on base minimal terminal install (headless).
+- A desktop environment such GNOME, KDE is not required. Can run HEADLESS on mimimal Debian install with base system tools.
+- Will run on a Raspberry Pi 3 however installation and performance will be slow.
+- A Pi 4 or other x64 hardware or virtual machine would be recommended.
+- During installation larger dependencies such mono may appear to stall or hang however they will eventually complete (noticable mainly on slower hardware as a Pi 3).
+- Bazarr does have Python and other packages requirements.
+- Bazarr will configured to run using a Python virtual environment (venv) to prevent dependency issues.
 - The removal of applications is only going to work if the PiJARR script was used for the original installation.
 - When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
 
