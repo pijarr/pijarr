@@ -105,11 +105,11 @@ qBittorrent-nox: http://hostip:8080
 Use the wget or curl command lines shown below for quick setup.
 
 ```terminal
-sudo sh -c "$(wget -qO- https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
+sudo sh -c "$(wget -qO- https://raw.githubusercontent.com/pijarr/pijarr/main/setup.sh)"
 ```
 
 ```terminal
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/master/setup.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/pijarr/pijarr/main/setup.sh)"
 ```
 
 #### **Method 2:** Clone and run locally
