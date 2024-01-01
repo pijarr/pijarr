@@ -6,7 +6,7 @@
 
 # PiJARR
 
-PiJARR is a shell script designed to simplify the installation and configuration of a suite of media management tools on Debian-based distributions. This script is compatible with various systems, including Debian 11 (bullseye), Debian 12 (bookworm), Raspberry Pi OS, Ubuntu, Pop!_OS, Kali Linux, and more. It supports both ARM (Raspberry Pi) and Intel/AMD x64 architectures.
+PiJARR is a shell script designed to simplify the installation and configuration of a suite of media management tools on Debian-based distributions. This script is compatible with various systems, including Debian 11 (bullseye), Debian 12 (bookworm), Raspberry Pi OS, Ubuntu, Pop!\_OS, Kali Linux, and more. It supports both ARM (Raspberry Pi) and Intel/AMD x64 architectures.
 
 ### WHAT ARR THEY?
 
@@ -36,7 +36,6 @@ PiJARR has been tested in the following setups:
 - Raspberry Pi OS (64-bit Lite) based on Debian Bullseye - Kernel 5.15
 - Raspberry Pi OS (Legacy 32-bit Lite) based on Debian Buster - Kernel 5.10
 
-
 ### NOTES
 
 - **Testing Environment**: The script has been primarily tested on clean, vanilla Debian installations. While it should work on other Debian-based OSes, minor adjustments might be needed. Please note that due to changes in package sources, occasional breaks can occur. This project is updated in my spare time and is not actively monitored or maintained.
@@ -51,13 +50,15 @@ PiJARR has been tested in the following setups:
 
 - **Application Removal**: The removal script will delete everything in /var/lib/{appname} and /opt/{appname}. Please note that the removal process only works if the application was originally installed using the PiJARR script.
 
-- **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using apt as shown below:
+- **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using `apt`` as shown below:
 
 ```terminal
-# qBittorrent Desktop GUI
+# qBittorrent desktop GUI torrent client
 sudo apt install qbittorrent
+```
 
-# transmission Desktop GUI
+```terminal
+# transmission desktop GUI torrent client
 sudo apt install transmission
 ```
 
@@ -118,7 +119,6 @@ Readarr:         http://hostip:8787
 Prowlarr:        http://hostip:9696
 Bazarr:          http://hostip:6767
 qBittorrent-nox: http://hostip:8080
-
 ```
 
 ### USAGE
