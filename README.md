@@ -14,6 +14,7 @@ PiJARR automates the installation of the following applications: [Jackett](https
 
 ### LATEST UPDATE
 
+- [x] Support for Sonarr v4
 - [x] Added an installation option for qBittorrent-nox (a headless version of the qBittorrent client) by default will run on port 8080
 - [x] Added support for [Bazarr](https://github.com/morpheus65535/bazarr) installation.
 - [x] Clean up code, and introduced more validation.
