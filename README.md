@@ -1,43 +1,65 @@
-# PiJARR
-
 ![PiJARR](/pijarr.png)
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr)](https://github.com/pijarr/pijarr/stargazers)
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
 [![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
-A shell script to automate the installation and configuration of [Jackett](https://github.com/Jackett/Jackett), [Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [Lidarr](https://github.com/Lidarr/Lidarr), [Readarr](https://github.com/Readarr/Readarr), [Prowlarr](https://github.com/Prowlarr/Prowlarr), and [Bazarr](https://github.com/morpheus65535/bazarr) on Debian based distros. Including Debian 11 (bullseye) and 12 (bookworm), Raspberry PI OS, Ubuntu, Pop!\_OS Kali etc. Supports ARM **Raspberry Pi** and Intel/AMD x64 systems.
+# PiJARR
+
+PiJARR is a shell script designed to simplify the installation and configuration of a suite of media management tools on Debian-based distributions. This script is compatible with various systems, including Debian 11 (bullseye), Debian 12 (bookworm), Raspberry Pi OS, Ubuntu, Pop!_OS, Kali Linux, and more. It supports both ARM (Raspberry Pi) and Intel/AMD x64 architectures.
 
 ### WHAT ARR THEY?
 
-PiJARR automates the installation of the following applications: [Jackett](https://github.com/Jackett/Jackett) (API Support for your favorite torrent trackers), [Sonarr](https://github.com/Sonarr/Sonarr) (an Internet PVR for Usenet and torrents), [Radarr](https://github.com/Radarr/Radarr) (a movie collection manager for Usenet and BitTorrent users), [Lidarr](https://github.com/Lidarr/Lidarr) (a music collection manager for Usenet and BitTorrent users), [Readarr](https://github.com/Readarr/Readarr) (a ebook collection manager for Usenet and BitTorrent users), [Prowlarr](https://github.com/Prowlarr/Prowlarr) (an indexer manager/proxy built on the popular \*arr .net/reactjs base stack to integrate apps including Sonarr, Radarr, Lidarr and Readarr), and [Bazarr](https://github.com/morpheus65535/bazarr) (a companion application to Sonarr and Radarr to manages and download subtitles.)
+PiJARR streamlines the deployment of the following applications:
+
+- [**Jackett**](https://github.com/Jackett/Jackett): Integrates your favorite torrent trackers with a unified API.
+- [**Sonarr**](https://github.com/Sonarr/Sonarr): Acts as an Internet PVR for Usenet and BitTorrent, automating TV show downloads.
+- [**Radarr**](https://github.com/Radarr/Radarr): Manages movie collections for Usenet and BitTorrent users.
+- [**Lidarr**](https://github.com/Lidarr/Lidarr): Organizes music collections from Usenet and BitTorrent sources.
+- [**Readarr**](https://github.com/Readarr/Readarr): Manages ebook collections, catering to both Usenet and BitTorrent users.
+- [**Prowlarr**](https://github.com/Prowlarr/Prowlarr): Serves as an indexer manager/proxy, integrating with applications like Sonarr, Radarr, Lidarr, and Readarr.
+- [**Bazarr**](https://github.com/morpheus65535/bazarr): Enhances Sonarr and Radarr by managing and downloading subtitles.
 
 ### LATEST UPDATE
 
-- [x] Support for Sonarr v4
-- [x] Added an installation option for qBittorrent-nox (a headless version of the qBittorrent client) by default will run on port 8080
-- [x] Added support for [Bazarr](https://github.com/morpheus65535/bazarr) installation.
-- [x] Clean up code, and introduced more validation.
+- [x] Added support for Sonarr v4.
+- [x] Integrated an installation option for qBittorrent-nox, a headless torrent client, defaulting to port 8080.
+- [x] Expanded functionality to include Bazarr installation.
+- [x] Enhanced script with code cleanup and improved validation.
 
-### TESTED
+### TESTED ENVIRONMENTS
 
-**Note:** Most testing was done on clean vanilla Debian installs, minor adjustments or edits may be required for other OS. Also, occasional breaks may occur when package sources change. this project is updated in spare time and is not actively monitored or maintained.
+PiJARR has been tested in the following setups:
 
-- [x] x64 Debian GNU/Linux 12 (bookworm) 6.1.0-16-amd64
-- [x] x64 Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
-- [x] _Running Raspberry Pi OS ([64-bit](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-64-bit)) Lite minimal image based on Debian Bullseye - (Kernel 5.15)_
-- [x] _Running Raspberry Pi OS ([legacy 32-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-legacy)) Lite minimal image based on Debian Buster - (Kernel 5.10)_
+- Debian GNU/Linux 12 (bookworm) 6.1.0-16-amd64
+- Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
+- Raspberry Pi OS (64-bit Lite) based on Debian Bullseye - Kernel 5.15
+- Raspberry Pi OS (Legacy 32-bit Lite) based on Debian Buster - Kernel 5.10
+
 
 ### NOTES
 
-- A desktop environment such GNOME, KDE is not required. Can run HEADLESS on mimimal Debian install with base system tools.
-- Will run on a Raspberry Pi 3 however installation and performance will be slow.
-- A Pi 4 or other x64 hardware or virtual machine would be recommended.
-- During installation, larger dependencies like Mono may seem to stall or hang, but they will eventually complete (noticable mainly on slower hardware as a Pi 3).
-- Bazarr does have Python and other packages requirements.
-- Bazarr will configured to run using a Python virtual environment (venv) to prevent dependency issues.
-- The removal of applications is only going to work if the PiJARR script was used for the original installation.
-- When removing applications anything contained in the `/var/lib/{appname}` or `/opt/{appname}` will be deleted.
+- **Testing Environment**: The script has been primarily tested on clean, vanilla Debian installations. While it should work on other Debian-based OSes, minor adjustments might be needed. Please note that due to changes in package sources, occasional breaks can occur. This project is updated in my spare time and is not actively monitored or maintained.
+
+- **Desktop Environment**: No desktop environment like GNOME or KDE is required. The script is designed to run headless on a minimal Debian installation with basic system tools.
+
+- **Hardware Recommendations**: The script is compatible with Raspberry Pi 3, but installation and performance may be slow. For optimal performance, a Raspberry Pi 4, other x64 hardware, or a virtual machine is recommended.
+
+- **Installation Notes**: Larger dependencies, such as Mono, may appear to stall or hang during installation, especially on slower hardware like Raspberry Pi 3. However, they will eventually complete.
+
+- **Bazarr Dependencies**: Bazarr requires additional Python packages. It will be configured to run in a Python virtual environment (venv) to avoid dependency conflicts.
+
+- **Application Removal**: The removal script will delete everything in /var/lib/{appname} and /opt/{appname}. Please note that the removal process only works if the application was originally installed using the PiJARR script.
+
+- **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using apt as shown below:
+
+```terminal
+# qBittorrent Desktop GUI
+sudo apt install qbittorrent
+
+# transmission Desktop GUI
+sudo apt install transmission
+```
 
 ### EXAMPLE - MENU OPTIONS
 
