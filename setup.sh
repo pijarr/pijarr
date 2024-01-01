@@ -179,7 +179,7 @@ radarr_src_url="https://radarr.servarr.com/v1/update/master/updatefile?os=linux&
 lidarr_src_url="https://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 prowlarr_src_url="http://prowlarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
 readarr_src_url="http://readarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=${SERVARR_ARCH}"
-sonarr_src_url="https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux&arch=${SERVARR_ARCH}"
+sonarr_src_url="https://services.sonarr.tv/v1/download/main/latest?version=4&os=linux&arch=${SERVARR_ARCH}"
 bazarr_src_url="https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
 qbittorrent_nox_src_url="Not applicable. Installed via apt."
 
@@ -416,7 +416,7 @@ setup_app() {
         if [ "${app_name}" = "jackett" ]; then
             app_exec="${app_opt_path}/${app_name}_launcher.sh"
         elif [ "${app_name}" = "sonarr" ]; then
-            app_exec="/usr/bin/mono --debug ${app_opt_path}/$(title_case ${app_name}).exe -nobrowser"
+            app_exec="${app_opt_path}/$(title_case ${app_name}) -nobrowser -data=${app_lib_path}"
         elif [ "${app_name}" = "bazarr" ]; then
             app_exec="${app_opt_path}/venv/bin/python ${app_opt_path}/bazarr.py"
         else
