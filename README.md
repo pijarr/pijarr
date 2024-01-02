@@ -6,7 +6,7 @@
 
 # PiJARR
 
-PiJARR is a shell script designed to simplify the installation and configuration of a suite of media management tools on Debian-based distributions. This script is compatible with various systems, including Debian 11 (bullseye), Debian 12 (bookworm), Raspberry Pi OS, Ubuntu, Pop!\_OS, Kali Linux, and more. It supports both ARM (Raspberry Pi) and Intel/AMD x64 architectures.
+PiJARR is a shell script designed to simplify the installation and configuration of a suite of media management tools on Debian-based distributions. This script is compatible with various systems, including Debian 11 (bullseye), Debian 12 (bookworm), Raspberry Pi OS, Ubuntu, Pop!\_OS, Kali Linux, and more. It supports both ARM (Raspberry Pi) and Intel/AMD **x64** architectures.
 
 ### WHAT ARR THEY?
 
@@ -27,14 +27,34 @@ PiJARR streamlines the deployment of the following applications:
 - [x] Expanded functionality to include Bazarr installation.
 - [x] Enhanced script with code cleanup and improved validation.
 
-### TESTED ENVIRONMENTS
+### TEST ENVIRONMENTS
 
 PiJARR has been tested in the following setups:
 
-- Debian GNU/Linux 12 (bookworm) 6.1.0-16-amd64
-- Debian GNU/Linux 11 (bullseye) 5.10.0-23-amd64
-- Raspberry Pi OS (64-bit Lite) based on Debian Bullseye - Kernel 5.15
-- Raspberry Pi OS (Legacy 32-bit Lite) based on Debian Buster - Kernel 5.10
+```terminal
+System OS.........: Debian GNU/Linux 12 (bookworm)
+System Kernel.....: 6.1.0-rpi7-rpi-v8
+System Arch.......: aarch64
+System Proc.......: Raspberry Pi 4
+```
+
+```terminal
+System OS.........: Debian GNU/Linux 12 (bookworm)
+System Kernel.....: 6.1.0-16-amd64
+System Arch.......: x86_64
+System Proc.......: Intel(R) Core(TM) i7
+```
+
+#### Raspberry Pi testing version  
+
+[raspberrypi.com/software/operating-systems/](https://www.raspberrypi.com/software/operating-systems/)
+```terminal
+Raspberry Pi OS Lite
+Release date: December 11th 2023
+System: 64-bit
+Kernel version: 6.1
+Debian version: 12 (bookworm)
+```
 
 ### NOTES
 
@@ -51,7 +71,7 @@ PiJARR has been tested in the following setups:
 - **Application Removal**: The removal script will delete everything in /var/lib/{appname} and /opt/{appname}. Please note that the removal process only works if the application was originally installed using the PiJARR script.
 
 - **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using the `apt` command as shown below:
-
+  
 ```terminal
 # qBittorrent desktop GUI torrent client
 sudo apt install qbittorrent
