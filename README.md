@@ -2,7 +2,6 @@
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/pijarr/pijarr)](https://github.com/pijarr/pijarr/stargazers)
 [![GitHub Repo issues](https://img.shields.io/github/issues/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues)
-[![GitHub Repo issues](https://img.shields.io/github/issues-closed/pijarr/pijarr)](https://github.com/pijarr/pijarr/issues?q=is%3Aissue+is%3Aclosed)
 
 # PiJARR
 
@@ -45,9 +44,10 @@ System Arch.......: x86_64
 System Proc.......: Intel(R) Core(TM) i7
 ```
 
-#### Raspberry Pi testing version  
+#### Raspberry Pi testing version
 
 [raspberrypi.com/software/operating-systems/](https://www.raspberrypi.com/software/operating-systems/)
+
 ```terminal
 Raspberry Pi OS Lite
 Release date: December 11th 2023
@@ -71,7 +71,7 @@ Debian version: 12 (bookworm)
 - **Application Removal**: The removal script will delete everything in /var/lib/{appname} and /opt/{appname}. Please note that the removal process only works if the application was originally installed using the PiJARR script.
 
 - **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using the `apt` command as shown below:
-  
+
 ```terminal
 # qBittorrent desktop GUI torrent client
 sudo apt install qbittorrent
