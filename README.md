@@ -106,7 +106,7 @@ Below is an example of the menu options presented by the PiJARR script:
 7.  Install prowlarr only
 8.  Install bazarr only
 
-9.  Install qBittorrent-nox (headless BitTorrent client)
+9.  Install qbittorrent-nox (headless BitTorrent client)
 
 10. Remove ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)
 11. Remove jackett only
