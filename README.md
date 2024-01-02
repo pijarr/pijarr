@@ -44,10 +44,9 @@ System Arch.......: x86_64
 System Proc.......: Intel(R) Core(TM) i7
 ```
 
-#### Raspberry Pi testing version
+#### Raspberry Pi testing version  
 
 [raspberrypi.com/software/operating-systems/](https://www.raspberrypi.com/software/operating-systems/)
-
 ```terminal
 Raspberry Pi OS Lite
 Release date: December 11th 2023
@@ -68,10 +67,10 @@ Debian version: 12 (bookworm)
 
 - **Bazarr Dependencies**: Bazarr requires additional Python packages. It will be configured to run in a Python virtual environment (venv) to avoid dependency conflicts.
 
-- **Application Removal**: The removal script will delete everything in /var/lib/{appname} and /opt/{appname}. Please note that the removal process only works if the application was originally installed using the PiJARR script.
+- **Application Removal**: The removal script will delete everything in `/var/lib/{appname}` and `/opt/{appname}`. Please note that the removal process only works if the application was originally installed using the PiJARR script.
 
-- **Headless Torrent Client**: The menu now includes qbittorrent-nox for users who prefer a headless setup. This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using the `apt` command as shown below:
-
+- **Headless Torrent Client**: The menu now includes [qbittorrent-nox](https://github.com/qbittorrent/qBittorrent) (headless BitTorrent client). This client is suitable for machines without a graphical desktop environment. For those who need a desktop GUI torrent client, you can install them using the `apt` command as shown below:
+  
 ```terminal
 # qBittorrent desktop GUI torrent client
 sudo apt install qbittorrent
@@ -95,7 +94,7 @@ Below is an example of the menu options presented by the PiJARR script:
     ▓▓▓▓         ▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓    ▓▓▓▓ ▓▓▓▓   ▓▓▓▓▓ ▓▓▓▓   ▓▓▓▓▓
 
 ==============
- Menu Options
+ Menu Options 
 ==============
 
 1.  Install ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)
@@ -106,7 +105,8 @@ Below is an example of the menu options presented by the PiJARR script:
 6.  Install readarr only
 7.  Install prowlarr only
 8.  Install bazarr only
-9.  Install qBittorrent-nox (headless torrent client) only
+
+9.  Install qBittorrent-nox (headless BitTorrent client)
 
 10. Remove ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)
 11. Remove jackett only
@@ -116,14 +116,14 @@ Below is an example of the menu options presented by the PiJARR script:
 15. Remove readarr only
 16. Remove prowlarr only
 17. Remove bazarr only
-18. Remove qbittorrent-nox only
+
+18. Remove qbittorrent-nox
 
 19. Show active services
 20. Show application default ports
 21. Show application source urls
 
 22. Exit
-
 ```
 
 ### DEFAULT APP PORT NUMBERS
