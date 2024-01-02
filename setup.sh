@@ -656,7 +656,7 @@ display_menu() {
     printf "6.  Install readarr only\n"
     printf "7.  Install prowlarr only\n"
     printf "8.  Install bazarr only\n"
-    printf "\n9.  Install qBittorrent-nox (headless BitTorrent client)\n"
+    printf "\n9.  Install qbittorrent-nox (headless BitTorrent client)\n"
     printf "\n10. Remove ALL (jackett sonarr lidarr radarr readarr prowlarr bazarr)\n"
     printf "11. Remove jackett only\n"
     printf "12. Remove sonarr only\n"
