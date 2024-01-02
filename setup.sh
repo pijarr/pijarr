@@ -299,7 +299,7 @@ script_info() {
     banner_info
     printf '%s\n' "
     Description:    Installer for Jackett, Sonarr, Radarr, Lidarr, Readarr, Prowler, and *Bazarr
-                    Tested with Raspberry Pi 3 & 4 32-Bit or 64-Bit running offical Raspberry Pi OS
+                    Tested with Raspberry Pi 3 & 4 running offical Raspberry Pi OS 64-Bit.
                     Compatibility with other Intel AMD x64 (64-bit only) Debian based Linux distros
 
     Author:         github.com/pijarr
